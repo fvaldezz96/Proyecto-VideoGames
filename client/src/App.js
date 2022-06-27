@@ -1,4 +1,5 @@
 import './App.css';
+// import image from "./image/imagenDeFondo.jpg";
 
 function App() {
   return (
@@ -9,3 +10,7 @@ function App() {
 }
 
 export default App;
+
+{/* <div className="imagen">
+  <img src={image} />
+</div> */}
