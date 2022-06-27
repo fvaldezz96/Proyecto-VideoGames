@@ -1,5 +1,5 @@
 // Me importo las acciones y creo las funciones
-import { GET_VIDEOGAME, GET_VIDEOGAME_DATAIL, CREATE_VIDEOGAME, DELETE_VIDEOGAME, ORDER_NAME, GET_GENRE, GET_PLATFORM, ORDER_RATING, GET_GAME_NAME, FILTER_VIDEOGAME, FILTER_GENRE } from './actions.js';
+import { GET_VIDEOGAME, GET_VIDEOGAME_DATAIL, CREATE_VIDEOGAME, DELETE_VIDEOGAME, ORDER_NAME, GET_GENRE, GET_PLATFORM, ORDER_RATING, GET_GAME_NAME, FILTER_CREATED, FILTER_GENRE } from './actions.js';
 
 import axios from 'axios';
 //Action creators
@@ -82,9 +82,19 @@ export default function createVideogame(payloand) {
      return async function () {
           const crear = await axios.post("http://localhost:3001/videogame", payloand)
           // console.log(crear.data)
-          return crear;
+          return {
+               type: CREATE_VIDEOGAME,
+               payloand: crear
+          };
      }
 }
+export default function filterCreated(payloand) {
+     return {
+          type: FILTER_CREATED,
+          payloand: payloand
+     }
+}
+
 export default function deleteVideogame(id) {
      return async function (dispatch) {
           try {
@@ -110,7 +120,7 @@ export default function filterGenres(payloand) {
 //           payloand
 //      }
 // }
-export default function orderName(payloand) {
+export default function orderAlphabetic(payloand) {
      return {
           type: ORDER_NAME,
           payloand
@@ -125,6 +135,28 @@ export default function orderRating(payloand) {
 
 }
 //este me permite buscar por el searchbar !!!! 
-export default function getGameName() {
-     
+
+/**
+ * Es una función asíncrona que devuelve una función que toma una función de envío como parámetro.
+ * La función interna es la que realmente hace el trabajo. Es una función asíncrona que realiza una
+ * llamada a la API y luego envía una acción con los resultados de la llamada a la API.
+ * 
+ * La función externa es solo un contenedor que facilita el uso de la función interna con redux-thunk.
+ * La función externa se llama thunk.
+ * La función interna se llama creador de acción thunk.
+ * @param name - El nombre del juego que desea buscar.
+ * @returns una función asíncrona que va a enviar una acción.
+ */
+export default function getGameName(name) {
+     return async function (dispatch) {
+          try {
+               const results = await axios.get("http://localhost:3001/videogame?name=" + name);
+               dispatch({
+                    type: GET_GAME_NAME,
+                    payloand: results.data
+               });
+          } catch (error) {
+               console.log("No se encontro el videogame");
+          }
+     }
 }
