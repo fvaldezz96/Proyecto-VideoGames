@@ -10,7 +10,7 @@ import axios from 'axios';
  */
 export default function getVideogame() {
      // en este caso tengo que llamar a la api para poder traeme todos los videogame
-     return async function (dispatch) {
+     return async function (dispatch) { //closure
           const api = await axios.get("http://localhost:3001/videogame", {})
           //   console.log(api.data)
           return dispatch({
@@ -19,6 +19,14 @@ export default function getVideogame() {
           })
      }
 }
+//function para hacer el pedido a la api y despachar la function 
+// export default function getVideogame() {
+//      return function (dispatch) {
+//           return fetch("http://localhost:3001/videogame").then(res => res.json()).then(res => dispatch({ type: GET_VIDEOGAME, payloand: res }))
+//      }
+// }
+
+
 /**
  * Es una función asíncrona que devuelve una función que toma una función de envío como argumento.
  * La función interna es la que realmente hace el trabajo. Utiliza la función de envío para enviar una
@@ -160,3 +168,17 @@ export default function getGameName(name) {
           }
      }
 }
+
+
+
+
+
+// export function getDetails(id) {
+//      return function(dispatch) {
+//        return fetch("http://www.omdbapi.com/?apikey=20dac387&i=" + id)
+//          .then(response => response.json())
+//          .then(json => {
+//            dispatch({ type: "GET_DETAILS", payload: json });
+//          });
+//      };
+//    }
