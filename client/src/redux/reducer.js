@@ -4,15 +4,14 @@ let initialState = {
      games: [],
      videogame: [],
      detail: [],
-     platform: [],
-     genre: [],
-     //  allvideogame = []
+     platforms: [],
+     genres: [],
 }
 
 // EL REDUCER SIEMPRE TIENE QUE GENERAR UN NUEVO ESTADO,
 // ESTE ES EL ESTADO GLOBAL!!! osea cuando se modifique algo
 
-export default function (state = initialState, { payload, type }) {
+export default function reducer(state = initialState, { payload, type }) {
      switch (type) {
           case GET_VIDEOGAME:
                return {
@@ -20,30 +19,13 @@ export default function (state = initialState, { payload, type }) {
                     games: payload,
                     videogame: payload
                }
-          case FILTER_GENRE:
-               const game = state.games
-
-               const genreFiltered = payload === "ga" ? game :
-
-                    game.filter((e) =>
-                         e.genres.includes(payload))
-               return {
-                    ...state,
-                    videogame: genreFiltered
-               }
-          case GET_PLATFORM:
-
-          case GET_GENRE:
-               return {
-                    ...state,
-                    genres: payload
-               }
+          case 
           default:
-               break;
+               return state;
      }
 }
 
-//NECESITO DOCUMENTAR ESTO CUANDO TENGA EL CODIGO ARMADO
+
 // export default function (state = initialState, action) {
 //      switch (action.type) {
 //           case GET_VIDEOGAME:
