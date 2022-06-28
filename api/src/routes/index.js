@@ -137,7 +137,7 @@ router.post('/videogame', async (req, res) => {
           if (created) {
                return res.status(201).send("creado con exito")
           } else {
-               return res.status(400).send("esta mierda esta en la base d datos")
+               return res.status(400).send("esta en la base d datos")
           }
      } catch (error) {
           console.log(error)

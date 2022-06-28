@@ -96,6 +96,7 @@ export default function createVideogame(payloand) {
           };
      }
 }
+
 export default function filterCreated(payloand) {
      return {
           type: FILTER_CREATED,
