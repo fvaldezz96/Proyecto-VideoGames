@@ -19,7 +19,34 @@ export default function reducer(state = initialState, { payload, type }) {
                     games: payload,
                     videogame: payload
                }
-          case 
+          case FILTER_GENRE:
+               const filtrado = state.games;
+               const genreFiltrado = payload === "ga" ? filtrado :
+                    filtrado.filter((e) => {
+                         e.genres.includes(payload)//includes devuelve el valor que se le pasa       
+                         //por parametro , osea lo busca en el array y se lo trae                                                           
+                    })
+               return {
+                    ...state,
+                    videogame: genreFiltrado
+               }
+          // case FILTER_CREATED:
+          //      const gameCreate = state.games;
+          //      const filtroGameCreate = payload === "creado" ? gameCreate.filter(e => e.??????) 
+          //      return {
+          //           ...state,
+          //           videogame: filtroGameCreate
+          //      }
+          case GET_GENRE:
+               return {
+                    ...state,
+                    genres: payload
+               }
+          case GET_PLATFORM:
+               return {
+                    ...state,
+                    platforms: payload
+               }
           default:
                return state;
      }
