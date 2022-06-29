@@ -104,31 +104,33 @@ export default function filterCreated(payloand) {
      }
 }
 
-export default function deleteVideogame(id) {
-     return async function (dispatch) {
-          try {
-               const eliminar = await axios.delete(`http://localhost:3001/videogame/${id}`)
-               return dispatch({
-                    type: DELETE_VIDEOGAME,
-                    payloand: eliminar.data
-               });
-          } catch (error) {
-               console.log(error)
-          }
-     }
-}
+// export default function deleteVideogame(id) {
+//      return async function (dispatch) {
+//           try {
+//                const eliminar = await axios.delete(`http://localhost:3001/videogame/${id}`)
+//                return dispatch({
+//                     type: DELETE_VIDEOGAME,
+//                     payloand: eliminar.data
+//                });
+//           } catch (error) {
+//                console.log(error)
+//           }
+//      }
+// }
 export default function filterGenres(payloand) {
      return {
           type: FILTER_GENRE,
           payloand
      }
 }
-// export default function filterVideogame(payloand) {
+// export default function filterVideogame(payloand) { //esta opcion no la puedo usar por que no puedo 
+                                                        //filtrar juegos de la api 
 //      return {
 //           type: FILTER_VIDEOGAME,
 //           payloand
 //      }
 // }
+
 export default function orderAlphabetic(payloand) {
      return {
           type: ORDER_NAME,

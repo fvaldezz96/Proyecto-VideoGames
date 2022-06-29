@@ -10,7 +10,7 @@ export const GET_GAME_NAME = "GET_GAME_NAME";
 //crea el juego 
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 //elimina el juego
-export const DELETE_VIDEOGAME = "DELETE_VIDEOGAME";
+// export const DELETE_VIDEOGAME = "DELETE_VIDEOGAME";
 
 export const ORDER_RATING = "ORDER_RATING";
 export const ORDER_NAME = "ORDER_NAME";

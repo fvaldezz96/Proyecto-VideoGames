@@ -30,12 +30,18 @@ export default function reducer(state = initialState, { payload, type }) {
                     ...state,
                     videogame: genreFiltrado
                }
-          case FILTER_CREATED:
+          case FILTER_CREATED: // esta parte la chequeo despues cuando esten  en el fron haciendo el filter!!
                const gameCreate = state.games;
-               const filtroGameCreate = payload === "creado" ?
-                    gameCreate.filter((e) => {
-                         e.name.includes(payload)
-                    }) 
+               const filtroGameCreate = [];
+               switch (payload) {
+                    case 'api':
+                         filtroGameCreate = gameCreate.filter(e => typeof (e.id) === Number)
+                         break;
+                    case 'creadoDb':
+                         filtroGameCreate = gameCreate.filter(e => isNaN(e.id))
+                    default:
+                         break;
+               }
                return {
                     ...state,
                     videogame: filtroGameCreate
@@ -64,18 +70,52 @@ export default function reducer(state = initialState, { payload, type }) {
                return {
                     ...state,
                }
-          case DELETE_VIDEOGAME:
-               return {
-                    ...state,
-               }
+
           case ORDER_NAME:
+               const orden = state.games
+               const ordenAlf = payload === "asc" ? orden.sort((a, b) => {
+                    if (a.name > b.name) {
+                         return 1
+                    } else if (b.name > a.name) {
+                         return - 1
+                    } else {
+                         return 0
+                    }
+               }) : orden.sort((a, b) => {
+                    if (a.name > b.name) {
+                         return -1
+                    } else if (b.name > a.name) {
+                         return 1
+                    } else {
+                         return 0
+                    }
+               })
                return {
                     ...state,
+                    games: ordenAlf
                }
           case ORDER_RATING:
+               const ordenR = state.games
+               const ordenAlfR = payload === "ascR" ? ordenR.sort((a, b) => {
+                    if (a.name > b.name) {
+                         return 1
+                    } else if (b.name > a.name) {
+                         return - 1
+                    } else {
+                         return 0
+                    }
+               }) : ordenR.sort((a, b) => {
+                    if (a.name > b.name) {
+                         return -1
+                    } else if (b.name > a.name) {
+                         return 1
+                    } else {
+                         return 0
+                    }
+               })
                return {
                     ...state,
-
+                    games: ordenAlfR
                }
           default:
                return state;
@@ -83,7 +123,7 @@ export default function reducer(state = initialState, { payload, type }) {
 }
 
 
-// export default function (state = initialState, action) {
+// export default function (state = initialState,  {
 //      switch (action.type) {
 //           case GET_VIDEOGAME:
 //         return {
