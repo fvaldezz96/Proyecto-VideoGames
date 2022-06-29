@@ -1,16 +1,20 @@
 import './App.css';
-// import Landing from './componentes/container/Landing';
+  // import VideogameDetail from './componentes/container/VideogameDetail';
+  // import Card from './componentes/dumbs/Card';
+  // import Landing from './componentes/container/Landing';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Henry Videogames</h1>
-      <div>
-        <button>Start</button>
+  function App() {
+    return (
+      <div className="App">
+        <h1>Henry Videogames</h1>
+        <div>
+          {/* <Landing />
+        <Card /> */}
+          {/* <VideogameDetail /> */}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 export default App;
 

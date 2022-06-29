@@ -124,7 +124,7 @@ export default function filterGenres(payloand) {
      }
 }
 // export default function filterVideogame(payloand) { //esta opcion no la puedo usar por que no puedo 
-                                                        //filtrar juegos de la api 
+                                                        //filtrar juegos de la api
 //      return {
 //           type: FILTER_VIDEOGAME,
 //           payloand
