@@ -31,17 +31,12 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: true,
     },
-    image: {
-      type: DataTypes.STRING,
-      defaultValue:"https://media.kasperskydaily.com/wp-content/uploads/sites/92/2020/02/17105257/game-ratings-featured.jpg",
-      allowNull:true
-    },
-  /* Una bandera que indica si el videojuego fue creado en la base de datos o no. */
-    // createdInDb: {
-    //   type: DataTypes.BOOLEAN,
-    //   allowNull: false,
-    //   defaultValue: true
+    // image: {
+    //   type: DataTypes.STRING,
+    //   defaultValue:"https://media.kasperskydaily.com/wp-content/uploads/sites/92/2020/02/17105257/game-ratings-featured.jpg",
+    //   allowNull:true
     // },
+  
   },
     {
       //https://sebhastian.com/sequelize-timestamps/
