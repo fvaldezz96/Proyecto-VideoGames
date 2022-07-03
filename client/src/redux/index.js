@@ -1,68 +1,63 @@
 // Me importo las acciones y creo las funciones
-import { GET_VIDEOGAME, GET_VIDEOGAME_DATAIL, CREATE_VIDEOGAME, DELETE_VIDEOGAME, ORDER_NAME, GET_GENRE, GET_PLATFORM, ORDER_RATING, GET_GAME_NAME, FILTER_CREATED, FILTER_GENRE } from './actions.js';
+
 
 import axios from 'axios';
+import {
+     FILTER_BY_GENRE,
+     FILTER_BY_PLATFORM,
+     RESET_DETAILS,
+     RESET_FILTERS,
+} from './actions.js';
+
 //Action creators
 /**
  * Devuelve una función que toma una función de envío como argumento y luego devuelve una función
  * asíncrona que llama a la API y luego envía una acción con la respuesta de la API como carga útil.
  * @returns una función que devuelve un envío.
  */
-export default function getVideogame() {
+export function getVideogame() {
      // en este caso tengo que llamar a la api para poder traeme todos los videogame
      return async function (dispatch) { //closure
-          const api = await axios.get("http://localhost:3001/videogame", {})
+          const videogamesData = await axios.get(
+               "http://localhost:3001/videogame",
+               {}
+          )
           //   console.log(api.data)
           return dispatch({
-               type: GET_VIDEOGAME,
-               payloand: api.data
+               type: "GET_VIDEOGAMES",
+               payloand: videogamesData.data
           })
      }
 }
 //function para hacer el pedido a la api y despachar la function 
-// export default function getVideogame() {
+// export function getVideogame() {
 //      return function (dispatch) {
 //           return fetch("http://localhost:3001/videogame").then(res => res.json()).then(res => dispatch({ type: GET_VIDEOGAME, payloand: res }))
 //      }
 // }
 
 
-/**
- * Es una función asíncrona que devuelve una función que toma una función de envío como argumento.
- * La función interna es la que realmente hace el trabajo. Utiliza la función de envío para enviar una
- * acción a la tienda Redux.
- * La acción es un objeto con un tipo y una carga útil. El tipo es una cadena que identifica la acción.
- * La carga útil son los datos que lleva la acción.
- * La acción se envía a la tienda Redux. La tienda luego pasa la acción al reductor
- * El reductor es una función que toma el estado actual y la acción como argumentos y devuelve el
- * siguiente estado.
- * El reductor es la única función que puede cambiar el estado.
- *
- * @returns una función que devuelve una promesa.
- */
-export default function getGenre() {
-     return async function (dispatch) {
-          const genero = await axios.get("http://localhost:3001/genre")
-          return dispatch({
-               type: GET_GENRE,
-               payloand: genero.data
-          })
-     }
-}
-/**
- * Es una función asíncrona que devuelve una función que toma una función de envío como argumento.
- * La función interna es la que realmente despacha la acción.
- * La función externa es la que llama el middleware thunk. !!!!!!
- * El middleware thunk pasa la función de envío a la función interna.
- * @param id - la id del videojuego
- * @returns un objeto con un tipo y una carga útil.
- */
-export default function getVideoDetail(id) {
+
+export function getNameVideogames() {
      return async function (dispatch) {
           try {
-               const detail = await axios.get(`http://localhost:3001/${id}`)
+               const namesData = await axios.get("http://localhost:3001/videogames?name=" + name)
                return dispatch({
-                    type: GET_VIDEOGAME_DATAIL,
+                    type: "GET_NAME_VIDEOGAMES",
+                    payloand: namesData.data
+               })
+          } catch (error) {
+               alert("no encontramos el nombre de su juego")
+          }
+     }
+}
+
+export function getVideogameDetail(id) {
+     return async function (dispatch) {
+          try {
+               const detail = await axios.get(`http://localhost:3001/videogame/${id}`)
+               return dispatch({
+                    type: "GET_VIDEOGAME_DATAIL",
                     payloand: detail.data
                })
           } catch (error) {
@@ -72,7 +67,7 @@ export default function getVideoDetail(id) {
 
 
 }
-export default function getPlatform() {
+export function getPlatform() {
      return async function (dispatch) {
           const consola = await axios.get("http://localhost:3001/videogame")
           return dispatch({
@@ -86,7 +81,7 @@ export default function getPlatform() {
  * @param payloand - {
  * @returns La función está siendo devuelta.
  */// este payloand es que recibo del form del front 
-export default function createVideogame(payloand) {
+export function createVideogame(payloand) {
      return async function () {
           const crear = await axios.post("http://localhost:3001/videogame", payloand)
           // console.log(crear.data)
@@ -97,14 +92,14 @@ export default function createVideogame(payloand) {
      }
 }
 
-export default function filterCreated(payloand) {
+export function filterCreated(payloand) {
      return {
           type: FILTER_CREATED,
           payloand: payloand
      }
 }
 
-// export default function deleteVideogame(id) {
+// export function deleteVideogame(id) {
 //      return async function (dispatch) {
 //           try {
 //                const eliminar = await axios.delete(`http://localhost:3001/videogame/${id}`)
@@ -117,28 +112,28 @@ export default function filterCreated(payloand) {
 //           }
 //      }
 // }
-export default function filterGenres(payloand) {
+export function filterGenres(payloand) {
      return {
           type: FILTER_GENRE,
           payloand
      }
 }
-// export default function filterVideogame(payloand) { //esta opcion no la puedo usar por que no puedo 
-                                                        //filtrar juegos de la api
+// export function filterVideogame(payloand) { //esta opcion no la puedo usar por que no puedo 
+//filtrar juegos de la api
 //      return {
 //           type: FILTER_VIDEOGAME,
 //           payloand
 //      }
 // }
 
-export default function orderAlphabetic(payloand) {
+export function orderAlphabetic(payloand) {
      return {
           type: ORDER_NAME,
           payloand
      }
 
 }
-export default function orderRating(payloand) {
+export function orderRating(payloand) {
      return {
           type: ORDER_RATING,
           payloand
@@ -158,7 +153,7 @@ export default function orderRating(payloand) {
  * @param name - El nombre del juego que desea buscar.
  * @returns una función asíncrona que va a enviar una acción.
  */
-export default function getGameName(name) {
+export function getGameName(name) {
      return async function (dispatch) {
           try {
                const results = await axios.get("http://localhost:3001/videogame?name=" + name);

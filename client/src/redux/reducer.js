@@ -1,122 +1,137 @@
-import { GET_VIDEOGAME, GET_VIDEOGAME_DATAIL, CREATE_VIDEOGAME, ORDER_NAME, GET_GENRE, GET_PLATFORM, ORDER_RATING, GET_GAME_NAME, FILTER_CREATED, FILTER_GENRE } from './actions.js';
+import {
+     FILTER_BY_GENRE,
+     FILTER_BY_PLATFORM,
+     RESET_DETAILS,
+     RESET_FILTERS,
+} from './actions.js';
 
 let initialState = {
-     games: [],
-     videogame: [],
-     detail: [],
+     videogames: [],
+     allvideogames: [],
      platforms: [],
+     videogameDetail: [],
      genres: [],
 }
 
 // EL REDUCER SIEMPRE TIENE QUE GENERAR UN NUEVO ESTADO,
 // ESTE ES EL ESTADO GLOBAL!!! osea cuando se modifique algo
 
-export default function reducer(state = initialState, { payload, type }) {
-     switch (type) {
-          case GET_VIDEOGAME:
+export default function reducer(state = initialState, action) {
+     switch (action.type) {
+          case "GET_VIDEOGAMES":
                return {
                     ...state,
-                    games: payload,
-                    videogame: payload
-               }
-          case FILTER_GENRE:
-               const filtrado = state.games;
-               const genreFiltrado = payload === "ga" ? filtrado :
-                    filtrado.filter((e) => {
-                         e.genres.includes(payload)//includes devuelve el valor que se le pasa       
-                         //por parametro , osea lo busca en el array y se lo trae                                                           
-                    })
+                    videogames: action.payload,
+                    allvideogames: action.payload,
+               };
+          case RESET_FILTERS:
                return {
                     ...state,
-                    videogame: genreFiltrado
-               }
-          case FILTER_CREATED: // esta parte la chequeo despues cuando esten  en el fron haciendo el filter!!
-               const gameCreate = state.games;
-               const filtroGameCreate = [];
-               switch (payload) {
-                    case 'api':
-                         filtroGameCreate = gameCreate.filter(e => typeof (e.id) === Number)
-                         break;
-                    case 'creadoDb':
-                         filtroGameCreate = gameCreate.filter(e => isNaN(e.id))
-                    default:
-                         break;
-               }
+                    videogames: state.allvideogames,
+               };
+          case RESET_DETAILS:
                return {
                     ...state,
-                    videogame: filtroGameCreate
-               }
-          case GET_GENRE:
+                    videogameDetail: [],
+               };
+          case "GET_GENRES":
                return {
                     ...state,
-                    genres: payload
-               }
-          case GET_PLATFORM:
+                    genres: action.payload,
+               };
+          case "GET_PLATFORMS":
                return {
                     ...state,
-                    platforms: payload
-               }
-          case GET_GAME_NAME:
+                    platforms: action.payload,
+               };
+          case "POST_VIDEOGAME": {
                return {
                     ...state,
-                    videogame: payload
-               }
-          case GET_VIDEOGAME_DATAIL:
+               };
+          }
+          case FILTER_BY_PLATFORM:
                return {
                     ...state,
-                    detail: payload
-               }
-          case CREATE_VIDEOGAME:
+                    videogames: action.payload,
+               };
+          case FILTER_BY_GENRE:
                return {
                     ...state,
-               }
+                    videogames: action.payload,
+               };
 
-          case ORDER_NAME:
-               const orden = state.games
-               const ordenAlf = payload === "asc" ? orden.sort((a, b) => {
-                    if (a.name > b.name) {
-                         return 1
-                    } else if (b.name > a.name) {
-                         return - 1
-                    } else {
-                         return 0
-                    }
-               }) : orden.sort((a, b) => {
-                    if (a.name > b.name) {
-                         return -1
-                    } else if (b.name > a.name) {
-                         return 1
-                    } else {
-                         return 0
-                    }
-               })
+          case "FILTER_CREATED":
+               const createdFilter =
+                    action.payload === "Created"
+                         ? state.allvideogames.filter((v) => v.id.length > 10)
+                         : state.allvideogames.filter((v) => v.id.toString().length < 6);
+
                return {
                     ...state,
-                    games: ordenAlf
-               }
-          case ORDER_RATING:
-               const ordenR = state.games
-               const ordenAlfR = payload === "ascR" ? ordenR.sort((a, b) => {
-                    if (a.name > b.name) {
-                         return 1
-                    } else if (b.name > a.name) {
-                         return - 1
-                    } else {
-                         return 0
-                    }
-               }) : ordenR.sort((a, b) => {
-                    if (a.name > b.name) {
-                         return -1
-                    } else if (b.name > a.name) {
-                         return 1
-                    } else {
-                         return 0
-                    }
-               })
+                    videogames:
+                         action.payload === "All" ? state.allvideogames : createdFilter,
+               };
+
+          case "GET_NAME_VIDEOGAMES":
                return {
                     ...state,
-                    games: ordenAlfR
-               }
+                    videogames: action.payload,
+               };
+          case "GET_VIDEOGAME_DETAIL":
+               return {
+                    ...state,
+                    videogameDetail: action.payload,
+               };
+          case "ORDER_BY_NAME":
+               let arraySort =
+                    action.payload === "Asc"
+                         ? state.videogames.sort(function (a, b) {
+                              if (a.name > b.name) {
+                                   return 1;
+                              }
+                              if (b.name > a.name) {
+                                   return -1;
+                              }
+                              return 0;
+                         })
+                         : state.videogames.sort(function (a, b) {
+                              if (a.name > b.name) {
+                                   return -1;
+                              }
+                              if (b.name > a.name) {
+                                   return 1;
+                              }
+                              return 0;
+                         });
+               return {
+                    ...state,
+                    videogames: arraySort,
+               };
+          case "ORDER_BY_RATING":
+               let arraySort1 =
+                    action.payload === "Less"
+                         ? state.videogames.sort(function (a, b) {
+                              if (a.rating > b.rating) {
+                                   return 1;
+                              }
+                              if (b.rating > a.rating) {
+                                   return -1;
+                              }
+                              return 0;
+                         })
+                         : state.videogames.sort(function (a, b) {
+                              if (a.rating > b.rating) {
+                                   return -1;
+                              }
+                              if (b.rating > a.rating) {
+                                   return 1;
+                              }
+                              return 0;
+                         });
+               return {
+                    ...state,
+                    videogames: action.payload === "All" ? state.videogames : arraySort1,
+               };
           default:
                return state;
      }
