@@ -1,13 +1,16 @@
 import React from 'react';
-function Landing() {
+import { Link } from 'react-router-dom';
+
+export default function Landing() {
      return (
           <div>
                <h1 className='titulo'>Hola Bienvenido a Videogames!</h1>
                <div className='boton'>
-                    <button >Inicio</button>
+                    <Link to="/home">
+                         <button >Inicio</button>
+                    </Link>
                </div>
           </div>
      )
 }
 
-export default Landing; 
