@@ -2,59 +2,70 @@ import React from 'react';
 import { getVideogameDetail } from '../../redux/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 
-function VideogameDetail() {
-     const dispatch = useDispatch();
-     /* Obtener el estado de la tienda redux.*/
-     /* Un gancho que se utiliza para realizar efectos secundarios
-      en componentes de función. */
-     useEffect(() => {
-          dispatch(getVideogameDetail()
-          )
-     }, [dispatch])
+export default function detail(props) {
 
-     const games = useSelector((state) => state.detail)
+   const dispatch = useDispatch();
+   const { id } = props.match.params;
 
-     return (
-          <div className='detailBody'>{
-               games ?
-                    <div className='contenedor'>
+   /* Un gancho que se utiliza para realizar efectos secundarios en componentes de función. Es un
+   reemplazo cercano para el componenteDidMount, el componenteDidUpdate y el componenteWillUnmount
+   en las clases de React. */
+   useEffect(() => {
+      dispatch(getVideogameDetail(id)
+      )
+   }, [id, dispatch])
 
-                         <div className='nombre'>
-                              <h1>{games.name ? games.name : 'Nombre no encontrado'}</h1>
-                         </div>
+   const videogameDetail = useSelector((state) => state.VideogameDetail)
 
-                         <div className='imagen'>
-                              <img src={games.image ? games.image : 'Imagen no encontrada'} alt="img videogame" />
-                         </div>
-
-                         <div className='otrosDatos'>
-                              <div className='genre'>
-                                   <h4>GENRE</h4>
-                                   <p className='genreP'>{games.genre ? games.genre : 'Genero no encontrado'}</p>
-                              </div>
-                              <div className='fecha'>
-                                   <h4>FECHA</h4>
-                                   <p className='fechaP'>{games.released ? games.released : 'No encontramos esta fecha'}</p>
-                              </div>
-                              <div className='platform'>
-                                   <h4>PLATFORM</h4>
-                                   <p className='platformP'>{games.platform ? games.platform : 'No esta disponible en esta plataforma'}</p>
-                              </div>
-                              <div className='rating'>
-                                   <h4>RATING</h4>
-                                   <p className='raingP'>{games.rating ? games.rating : games.rating}</p>
-                              </div>
-                         </div>
-                    </div>
-                    :
-                    <div className='parent'>
-                         <img src='direccion de imagen ' alt="GAME NOT FOUND" className='imgApi' />
-                    </div>
-          }
-          </div>
-
-     )
+   return (
+      <div>
+         <Link to="/home">
+            <button>volver</button>
+         </Link>
+         {videogameDetail ? (
+            <div className=''>
+               <img className=''
+                  src={
+                     videogameDetail.background_image ||
+                     "https://m.media-amazon.com/images/I/611fcGzpVUL.jpg"
+                  }
+                  alt=""
+               />
+               <div className=''>
+                  <p className=''>{videogameDetail.name}</p>
+                  <p>
+                     <strong>Generos:</strong>{" "}
+                     {videogameDetail.genres?.map((g) => g.name).join(",")}
+                  </p>
+                  <p>
+                     <strong>Description:</strong>
+                     {videogameDetail.description_raw || videogameDetail.description}
+                  </p>
+                  <p>
+                     <strong>Platafromas:</strong>
+                     {videogameDetail.id?.length > 7
+                        ? videogameDetail.platforms?.map((p) => p.name).join(", ")
+                        : videogameDetail.platforms
+                           ?.map((p) => p.platforms.name).join(", ")
+                     }
+                  </p>
+                  <p>
+                     <strong>fecha:</strong>
+                     {videogameDetail.released || "None"}
+                  </p>
+                  <p>
+                     <strong>Puntuacion: </strong>
+                     {videogameDetail.rating}
+                  </p>
+               </div>
+            </div>
+         ) : (
+            <Spinner />
+         )}
+      </div>
+   )
 }
-export default VideogameDetail;
+
