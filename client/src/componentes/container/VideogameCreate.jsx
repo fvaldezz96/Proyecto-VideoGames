@@ -21,7 +21,7 @@ function VideogameCreate() {
           description: "",
           released: "",
           rating: 0,
-          platform: [],
+          platform: [], 
           genre: []
      })
 
@@ -29,10 +29,7 @@ function VideogameCreate() {
      reemplazo cercano para el componenteDidMount, el componenteDidUpdate y el componenteWillUnmount
      en las clases de React. esto es en el caso del componente de clase ==> https://es.reactjs.org/docs/forms.html */
      useEffect(() => {
-          dispatch(getGenre())
-     }, [dispatch])
-
-     useEffect(() => {
+          dispatch(getGenre());
           dispatch(getPlatform())
      }, [dispatch])
 
@@ -60,9 +57,15 @@ function VideogameCreate() {
           <div className='contenedor'>
                <div className='formulario'>
                     <form >
+
                          <label>
+
                               Nombre:
-                              <input type="text" value='' />
+                              <input
+                                   type="text"
+                                   value=''
+                                   onChange={(e) => handleChange(e)}
+                              />
                          </label>
 
                          <label>Description</label>
@@ -73,10 +76,10 @@ function VideogameCreate() {
 
                          <label>Rating</label>
                          <input type="text" />
-
-                         <label>Plataforma</label>
-                         <input type="text" />
-
+          
+                         <input
+                              type="text"
+                         />
                          <label>Imagen</label>
                          <div className='imagen'>
                               <img src="" alt="buscar imagen en carpeta" />

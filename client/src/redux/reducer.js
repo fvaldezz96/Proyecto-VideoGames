@@ -3,6 +3,13 @@ import {
      FILTER_BY_PLATFORM,
      RESET_DETAILS,
      RESET_FILTERS,
+     GET_NAME_VIDEOGAMES,
+     GET_VIDEOGAMES,
+     GET_VIDEOGAME_DATAIL,
+     GET_PLATFORMS,
+     FILTER_CREATED,
+     ORDER_BY_NAME,
+     ORDER_BY_RATING,
 } from './actions.js';
 
 let initialState = {
@@ -18,7 +25,7 @@ let initialState = {
 
 export default function reducer(state = initialState, action) {
      switch (action.type) {
-          case "GET_VIDEOGAMES":
+          case GET_VIDEOGAMES:
                return {
                     ...state,
                     videogames: action.payload,
@@ -34,17 +41,17 @@ export default function reducer(state = initialState, action) {
                     ...state,
                     videogameDetail: [],
                };
-          case "GET_GENRES":
+          case GET_GENRES:
                return {
                     ...state,
                     genres: action.payload,
                };
-          case "GET_PLATFORMS":
+          case GET_PLATFORMS:
                return {
                     ...state,
                     platforms: action.payload,
                };
-          case "POST_VIDEOGAME": {
+          case POST_VIDEOGAME: {
                return {
                     ...state,
                };
@@ -60,7 +67,7 @@ export default function reducer(state = initialState, action) {
                     videogames: action.payload,
                };
 
-          case "FILTER_CREATED":
+          case FILTER_CREATED:
                const createdFilter =
                     action.payload === "Created"
                          ? state.allvideogames.filter((v) => v.id.length > 10)
@@ -72,17 +79,17 @@ export default function reducer(state = initialState, action) {
                          action.payload === "All" ? state.allvideogames : createdFilter,
                };
 
-          case "GET_NAME_VIDEOGAMES":
+          case GET_NAME_VIDEOGAMES:
                return {
                     ...state,
                     videogames: action.payload,
                };
-          case "GET_VIDEOGAME_DETAIL":
+          case GET_VIDEOGAME_DETAIL:
                return {
                     ...state,
                     videogameDetail: action.payload,
                };
-          case "ORDER_BY_NAME":
+          case ORDER_BY_NAME:
                let arraySort =
                     action.payload === "Asc"
                          ? state.videogames.sort(function (a, b) {
@@ -107,7 +114,7 @@ export default function reducer(state = initialState, action) {
                     ...state,
                     videogames: arraySort,
                };
-          case "ORDER_BY_RATING":
+          case ORDER_BY_RATING:
                let arraySort1 =
                     action.payload === "Less"
                          ? state.videogames.sort(function (a, b) {
@@ -138,25 +145,3 @@ export default function reducer(state = initialState, action) {
 }
 
 
-// export default function (state = initialState,  {
-//      switch (action.type) {
-//           case GET_VIDEOGAME:
-//         return {
-//              ...state ,
-//                  getVideogame: action.payload ; =>esto es un arreglo de objetos
-//  }
-//           case CREATE_VIDEOGAME:
-//                return {
-//                     ...state,
-//                     detailVideogame: [...state.createVideogame, action.payload]
-//                     // createVideogame : state.createVideogame.concat(action.payload)
-//                }
-//           case REMOVE_VIDEOGAME:
-//           default:
-//                return { ...state ,
-//           createVideogame: state.createVideogame.filter((e)=>{
-//           return e.id !== action.payload;
-// })
-//  }
-//      }
-// }

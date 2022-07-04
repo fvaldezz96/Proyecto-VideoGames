@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-     sequelize.define("platforms", {
+     sequelize.define("platform", {
           if: {
                type: DataTypes.UUID,
                defaultValue: DataTypes.UUIDV4,

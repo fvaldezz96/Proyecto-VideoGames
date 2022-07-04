@@ -3,10 +3,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
-
-
-
-
 require('./db.js');
 
 const server = express();
@@ -31,6 +27,8 @@ server.use('/', routes);
 
 
 // Error catching endware.
+/* Esta es una función de middleware que se llama cuando se produce un error. Es un cajón de sastre
+para los errores. */
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || err;

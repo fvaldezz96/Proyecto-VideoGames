@@ -3,43 +3,26 @@ const { DataTypes } = require('sequelize');
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  return sequelize.define('videogame', {
-   
-    id: { //COMPLETE
-      // Use UUID - Diferenciar entre ambas BDD...
+  sequelize.define('videogame', {
+    id: {
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
-      allowNull: false,
-      defaultValue: DataTypes.UUIDV4
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true
     },
     description: {
-      type: DataTypes.STRING,
-      allowNull: true // ==> es obligatorio !!
+      type: DataTypes.TEXT,
+      allowNull: false
     },
     released: {
-      type: DataTypes.STRING
+      type: DataTypes.DATEONLY
     },
     rating: {
-      type: DataTypes.INTEGER
-    },
-    platform: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
-    },
-    // image: {
-    //   type: DataTypes.STRING,
-    //   defaultValue:"https://media.kasperskydaily.com/wp-content/uploads/sites/92/2020/02/17105257/game-ratings-featured.jpg",
-    //   allowNull:true
-    // },
-  
-  },
-    {
-      //https://sebhastian.com/sequelize-timestamps/
-      timestamps: false,
-    });
+      type: DataTypes.FLOAT
+    },   
+  });
 };

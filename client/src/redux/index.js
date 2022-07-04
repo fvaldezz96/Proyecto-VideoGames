@@ -7,6 +7,13 @@ import {
    FILTER_BY_PLATFORM,
    RESET_DETAILS,
    RESET_FILTERS,
+   GET_NAME_VIDEOGAMES,
+   GET_VIDEOGAMES,
+   GET_VIDEOGAME_DATAIL,
+   GET_PLATFORMS,
+   FILTER_CREATED,
+   ORDER_BY_NAME,
+   ORDER_BY_RATING,
 } from './actions.js';
 
 //Action creators
@@ -19,12 +26,10 @@ export function getVideogame() {
    // en este caso tengo que llamar a la api para poder traeme todos los videogame
    return async function (dispatch) { //closure
       const videogamesData = await axios.get(
-         "http://localhost:3001/videogame",
-         {}
-      )
+         "http://localhost:3001/videogame", {})
       //   console.log(api.data)
       return dispatch({
-         type: "GET_VIDEOGAMES",
+         type: GET_VIDEOGAMES,
          payloand: videogamesData.data
       })
    }
@@ -36,14 +41,12 @@ export function getVideogame() {
 //      }
 // }
 
-
-
 export function getNameVideogames() {
    return async function (dispatch) {
       try {
          const namesData = await axios.get("http://localhost:3001/videogames?name=" + name)
          return dispatch({
-            type: "GET_NAME_VIDEOGAMES",
+            type: GET_NAME_VIDEOGAMES,
             payloand: namesData.data
          })
       } catch (error) {
@@ -57,7 +60,7 @@ export function getVideogameDetail(id) {
       try {
          const response = await axios.get(`http://localhost:3001/videogame/${id}`)
          return dispatch({
-            type: "GET_VIDEOGAME_DATAIL",
+            type: GET_VIDEOGAME_DATAIL,
             payloand: response.data
          })
       } catch (error) {
@@ -72,7 +75,7 @@ export function getPlatform() {
    return async function (dispatch) {
       const consola = await axios.get("http://localhost:3001/videogame")
       return dispatch({
-         type: GET_PLATFORM,
+         type: GET_PLATFORMS,
          payloand: consola.data
       })
    }
@@ -102,19 +105,19 @@ export function resetVideogameDetail(payload) {
 
 export function filterCreated(payload) {
    return {
-      type: "FILTER_CREATED",
+      type: FILTER_CREATED,
       payload,
    };
 }
 export function orderByName(payload) {
    return {
-      type: "ORDER_BY_NAME",
+      type: ORDER_BY_NAME,
       payload,
    };
 }
 export function orderByRating(payload) {
    return {
-      type: "ORDER_BY_RATING",
+      type: ORDER_BY_RATING,
       payload,
    };
 }
@@ -123,7 +126,7 @@ export function getPlatforms() {
    return async function (dispatch) {
       const json = await axios.get("http://localhost:3001/platforms");
       return dispatch({
-         type: "GET_PLATFORMS",
+         type: GET_PLATFORMS,
          payload: json.data
       })
    }
