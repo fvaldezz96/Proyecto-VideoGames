@@ -11,7 +11,9 @@ import {
    GET_VIDEOGAMES,
    GET_VIDEOGAME_DATAIL,
    GET_PLATFORMS,
+   GET_GENRES,
    FILTER_CREATED,
+   POST_VIDEOGAME,
    ORDER_BY_NAME,
    ORDER_BY_RATING,
 } from './actions.js';
@@ -44,7 +46,7 @@ export function getVideogame() {
 export function getNameVideogames() {
    return async function (dispatch) {
       try {
-         const namesData = await axios.get("http://localhost:3001/videogames?name=" + name)
+         const namesData = await axios.get("http://localhost:3001/videogames?name=")
          return dispatch({
             type: GET_NAME_VIDEOGAMES,
             payloand: namesData.data
@@ -69,23 +71,26 @@ export function getVideogameDetail(id) {
    }
 }
 
-
-
-export function getPlatform() {
+export function getGenres() {
    return async function (dispatch) {
-      const consola = await axios.get("http://localhost:3001/videogame")
+      const genres = await axios.get("http://localhost:3001/genres");
       return dispatch({
-         type: GET_PLATFORMS,
-         payloand: consola.data
+         type: GET_GENRES,
+         payload: genres.data,
       })
+
    }
 }
+
 
 export function postVideogames(payloand) {
    return async function (dispatch) {
       const data = await axios.post("http://localhost:3001/videogame", payloand)
       // console.log(data)
-      return data
+      return {
+         type: POST_VIDEOGAME,
+         payloand : data  
+      }
    }
 }
 

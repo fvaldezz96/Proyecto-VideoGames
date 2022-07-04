@@ -7,9 +7,11 @@ import {
      GET_VIDEOGAMES,
      GET_VIDEOGAME_DATAIL,
      GET_PLATFORMS,
+     GET_GENRES,
      FILTER_CREATED,
      ORDER_BY_NAME,
      ORDER_BY_RATING,
+     POST_VIDEOGAME
 } from './actions.js';
 
 let initialState = {
@@ -23,7 +25,7 @@ let initialState = {
 // EL REDUCER SIEMPRE TIENE QUE GENERAR UN NUEVO ESTADO,
 // ESTE ES EL ESTADO GLOBAL!!! osea cuando se modifique algo
 
-export default function reducer(state = initialState, action) {
+export default function rootReducer(state = initialState, action) {
      switch (action.type) {
           case GET_VIDEOGAMES:
                return {
@@ -84,7 +86,7 @@ export default function reducer(state = initialState, action) {
                     ...state,
                     videogames: action.payload,
                };
-          case GET_VIDEOGAME_DETAIL:
+          case GET_VIDEOGAME_DATAIL:
                return {
                     ...state,
                     videogameDetail: action.payload,

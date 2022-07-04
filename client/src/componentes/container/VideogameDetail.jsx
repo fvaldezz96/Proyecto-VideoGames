@@ -1,5 +1,5 @@
 import React from 'react';
-import { getVideoDetail } from '../../redux/index';
+import { getVideogameDetail } from '../../redux/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
@@ -10,7 +10,7 @@ function VideogameDetail() {
      /* Un gancho que se utiliza para realizar efectos secundarios
       en componentes de función. */
      useEffect(() => {
-          dispatch(getVideoDetail(id)
+          dispatch(getVideogameDetail()
           )
      }, [dispatch])
 
@@ -19,7 +19,7 @@ function VideogameDetail() {
      return (
           <div className='detailBody'>{
                games ?
-                    <div className='contenedor'> 
+                    <div className='contenedor'>
 
                          <div className='nombre'>
                               <h1>{games.name ? games.name : 'Nombre no encontrado'}</h1>
@@ -28,7 +28,7 @@ function VideogameDetail() {
                          <div className='imagen'>
                               <img src={games.image ? games.image : 'Imagen no encontrada'} alt="img videogame" />
                          </div>
-                     
+
                          <div className='otrosDatos'>
                               <div className='genre'>
                                    <h4>GENRE</h4>
