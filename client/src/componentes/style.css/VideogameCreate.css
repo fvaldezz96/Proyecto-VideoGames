@@ -17,19 +17,20 @@
      color: #525c66;
      font-size: 1em;
      resize: none;
-     text-align: center;
+     text-align: start;
 }
 
 .descripcion {
      margin: bottom 15px;
      font-family: "Roboto", sans-serif;
      width: 100%;
-     padding: 15px;
+     padding: 30px;
      box-sizing: border-box;
      border: none;
      color: #525c66;
      font-size: 1em;
      resize: none;
+     text-align: left;
 }
 
 .botonCrear {
@@ -38,9 +39,29 @@
      border: 0;
      font-size: 1em;
      color: white;
-     font-family: "Roboto", sans-serif;  
+     font-family: "Roboto", sans-serif;
      position: center;
+     margin-top: 40px ;
 }
-.botonCrear:hover{
+
+.botonCrear:hover {
      background-color: #046193;
+}
+
+.botonVolver {
+     background-color: #e7e7e7;;
+     padding: 4px 25px 5px 25px;
+     border: 0;
+     font-size: 1em;
+     color: white;
+     font-family: "Roboto", sans-serif;
+     position: center;
+     margin-top: 30px;
+}
+
+.botonSelect {
+     background-color: white;
+     border: 0.2px solid #e7e7e7;
+     margin: 5px;
+     position: fixed;
 }

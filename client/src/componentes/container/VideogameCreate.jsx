@@ -10,13 +10,13 @@ import '../style.css/VideogameCreate.css';
 function validate(input) {
   const errors = {};
   if (!input.name.trim()) {
-    errors.name = "A name is required";
+    errors.name = "Se requiere un nombre";
   }
   if (!input.description.trim()) {
-    errors.description = "A description is required";
+    errors.description = "Se requiere une descripcion";
   }
   if (!input.released.trim()) {
-    errors.released = "The release date is required";
+    errors.released = "Se requiere una fecha";
   }
   return errors;
 }
@@ -112,7 +112,7 @@ export default function VideogameCreate() {
   return (
     <div>
       <Link to="/home">
-        <button className="">Back</button>
+        <button className="botonVolver">Volver</button>
       </Link>
       <main className="">
         <h1 className="">Crear tu juego</h1>
@@ -121,11 +121,9 @@ export default function VideogameCreate() {
 
         <form className="form" onSubmit={(e) => handleSubmit(e)}>
           <div className="">
-            <label className="" htmlFor="">
-              Name
-            </label>
             <input
               required
+              placeholder="Nombre"
               className="input"
               type="text"
               name="name"
@@ -135,10 +133,9 @@ export default function VideogameCreate() {
             {errors.name && <h4>{errors.name}</h4>}
           </div>
           <div className="">
-            <label className="" htmlFor="">
-              Release date
-            </label>
+            <br />
             <input
+              placeholder="Fecha"
               className="input"
               type="date"
               name="released"
@@ -148,11 +145,10 @@ export default function VideogameCreate() {
             {errors.released && <h4>{errors.released}</h4>}
           </div>
           <div className="">
-            <label className="" htmlFor="">
-              Rating
-            </label>
+            <br />
             <input
               className="input"
+              placeholder="Rating"
               type="number"
               name="rating"
               value={input.rating}
@@ -162,10 +158,9 @@ export default function VideogameCreate() {
             />
           </div>
           <div className="">
-            <label className="" htmlFor="">
-              Description
-            </label>
+            <br />
             <textarea
+              placeholder="Escribe una breve descripcion de tu juego"
               className="descripcion"
               type="text"
               name="description"
@@ -191,13 +186,10 @@ export default function VideogameCreate() {
               </div>
             ))}
           </div> */}
-          <div className="">
-            <label className="" htmlFor="">
-              Genres
-            </label>
-            <select onChange={(e) => handleSelect(e)} name="genres">
+          <div >
+            <select className="botonSelect" onChange={(e) => handleSelect(e)} name="genres">
               <option selected={true} disabled="disabled" value="">
-                Choose a genre
+                Generos
               </option>
               {genres &&
                 genres.map((genre) => (
@@ -214,7 +206,7 @@ export default function VideogameCreate() {
             </div>
           ))}
           <button className="botonCrear" type="submit">
-            Crear 
+            Crear
           </button>
         </form>
       </main>
