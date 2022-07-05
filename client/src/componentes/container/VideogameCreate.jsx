@@ -4,6 +4,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
 import '../style.css/VideogameCreate.css';
 
+
+// eslint-disable-line react-hooks/exhaustive-deps
+
 function validate(input) {
   const errors = {};
   if (!input.name.trim()) {
@@ -43,12 +46,12 @@ export default function VideogameCreate() {
       genres: input.genres.filter((g) => g !== e),
     });
   }
-  function handleDeletePlatform(e) {
-    setInput({
-      ...input,
-      platforms: input.platforms.filter((p) => p !== e),
-    });
-  }
+  // function handleDeletePlatform(e) {
+  //   setInput({
+  //     ...input,
+  //     platforms: input.platforms.filter((p) => p !== e),
+  //   });
+  // }
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -63,12 +66,12 @@ export default function VideogameCreate() {
       })
     );
   }
-  function handleSelectPlatform(e) {
-    setInput({
-      ...input,
-      platforms: [...input.platforms, e.target.value],
-    });
-  }
+  // function handleSelectPlatform(e) {
+  //   setInput({
+  //     ...input,
+  //     platforms: [...input.platforms, e.target.value],
+  //   });
+  // }
   function handleSelect(e) {
     setInput({
       ...input,
@@ -94,6 +97,7 @@ export default function VideogameCreate() {
         platforms: [],
         genres: [],
       });
+      history.push('/home')
     } else {
       alert("Your videogame couldn't be created");
       return;
@@ -103,7 +107,7 @@ export default function VideogameCreate() {
   useEffect(() => {
     dispatch(getGenres());
   }, []);
-   
+
   //https://react-hook-form.com/api/useform/handlesubmit
   return (
     <div>
@@ -111,18 +115,18 @@ export default function VideogameCreate() {
         <button className="">Back</button>
       </Link>
       <main className="">
-        <h1 className="">Create your own videogame</h1>
+        <h1 className="">Crear tu juego</h1>
 
         <div className=""></div>
 
-        <form className="" onSubmit={(e) => handleSubmit(e)}>
+        <form className="form" onSubmit={(e) => handleSubmit(e)}>
           <div className="">
             <label className="" htmlFor="">
               Name
             </label>
             <input
               required
-              className=""
+              className="input"
               type="text"
               name="name"
               value={input.name}
@@ -132,23 +136,10 @@ export default function VideogameCreate() {
           </div>
           <div className="">
             <label className="" htmlFor="">
-              Description
-            </label>
-            <textarea
-              className=""
-              type="text"
-              name="description"
-              value={input.description}
-              onChange={(e) => handleChange(e)}
-            />
-            {errors.description && <h4>{errors.description}</h4>}
-          </div>
-          <div className="">
-            <label className="" htmlFor="">
               Release date
             </label>
             <input
-              className=""
+              className="input"
               type="date"
               name="released"
               value={input.released}
@@ -161,7 +152,7 @@ export default function VideogameCreate() {
               Rating
             </label>
             <input
-              className=""
+              className="input"
               type="number"
               name="rating"
               value={input.rating}
@@ -169,6 +160,19 @@ export default function VideogameCreate() {
               max="5"
               onChange={(e) => handleChange(e)}
             />
+          </div>
+          <div className="">
+            <label className="" htmlFor="">
+              Description
+            </label>
+            <textarea
+              className="descripcion"
+              type="text"
+              name="description"
+              value={input.description}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.description && <h4>{errors.description}</h4>}
           </div>
           {/* <div className="">
             <label className="" htmlFor="">
@@ -209,8 +213,8 @@ export default function VideogameCreate() {
               <button onClick={() => handleDelete(g)}>X</button>
             </div>
           ))}
-          <button className="" type="submit">
-            Create Videogame
+          <button className="botonCrear" type="submit">
+            Crear 
           </button>
         </form>
       </main>

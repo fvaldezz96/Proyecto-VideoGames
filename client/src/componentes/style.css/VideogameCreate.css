@@ -1,0 +1,46 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
+
+.form {
+     padding: 40px;
+     max-width: 400px;
+     background-color: #E7E7E7;
+     margin: 0 auto;
+}
+
+.input {
+     margin: bottom 15px;
+     font-family: "Roboto", sans-serif;
+     width: 100%;
+     padding: 10px;
+     box-sizing: border-box;
+     border: none;
+     color: #525c66;
+     font-size: 1em;
+     resize: none;
+     text-align: center;
+}
+
+.descripcion {
+     margin: bottom 15px;
+     font-family: "Roboto", sans-serif;
+     width: 100%;
+     padding: 15px;
+     box-sizing: border-box;
+     border: none;
+     color: #525c66;
+     font-size: 1em;
+     resize: none;
+}
+
+.botonCrear {
+     background-color: #0095eb;
+     padding: 10px 45px 10px 45px;
+     border: 0;
+     font-size: 1em;
+     color: white;
+     font-family: "Roboto", sans-serif;  
+     position: center;
+}
+.botonCrear:hover{
+     background-color: #046193;
+}

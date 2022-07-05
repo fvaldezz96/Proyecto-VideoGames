@@ -8,8 +8,8 @@ function Card({ image, name, genres, rating }) {
           <div className="card">
 
                <h1 className='name'><i>{name}</i></h1>
-               <div className='img'>
-                    <img src={image} alt="img and videogame" />
+               <div className=''>
+                    <img className="imagen" src={image} alt="img and videogame" />
                </div>
                <h3 className='rating'><i>{rating}</i></h3>
                <h4>{genero.join(", ")}</h4>
