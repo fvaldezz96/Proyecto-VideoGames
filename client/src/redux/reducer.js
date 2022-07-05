@@ -5,7 +5,7 @@ import {
      RESET_FILTERS,
      GET_NAME_VIDEOGAMES,
      GET_VIDEOGAMES,
-     GET_VIDEOGAME_DATAIL,
+     GET_VIDEOGAME_DETAIL,
      GET_PLATFORMS,
      GET_GENRES,
      FILTER_CREATED,
@@ -18,7 +18,7 @@ let initialState = {
      videogames: [],
      allvideogames: [],
      platforms: [],
-     videogameDetail: [],
+     videogameDetail:[],
      genres: [],
 }
 
@@ -64,9 +64,18 @@ export default function rootReducer(state = initialState, action) {
                     videogames: action.payload,
                };
           case FILTER_BY_GENRE:
+               const filtrado =
+                    action.payload === "All"
+                         ? state.allvideogames
+                         : state.allvideogames.filter((g) => {
+                             /* Filtrando los videojuegos por género. */
+                              return g.genres.find((g) => {
+                                   return g.name === action.payload;
+                              });
+                         });
                return {
                     ...state,
-                    videogames: action.payload,
+                    videogames: filtrado,
                };
 
           case FILTER_CREATED:
@@ -86,7 +95,7 @@ export default function rootReducer(state = initialState, action) {
                     ...state,
                     videogames: action.payload,
                };
-          case GET_VIDEOGAME_DATAIL:
+          case GET_VIDEOGAME_DETAIL:
                return {
                     ...state,
                     videogameDetail: action.payload,

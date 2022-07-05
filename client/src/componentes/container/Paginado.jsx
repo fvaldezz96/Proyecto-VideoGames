@@ -1,4 +1,4 @@
-
+import '../style.css/paginado.css'
 
 export default function Paginado({ videogamesPerPage, allVideogames, paginado }) {
    const pageNumbers = []
@@ -6,12 +6,12 @@ export default function Paginado({ videogamesPerPage, allVideogames, paginado })
    for (let i = 1; i <= Math.ceil(allVideogames / videogamesPerPage); i++) {
       pageNumbers.push(i)
    }
-
+  
    return (
       <nav className="">
-         <ul className="">
+         <ul className="paginado">
             {
-               pageNumbers && pageNumbers.map((np) => (//np == numero de pagina
+               pageNumbers && pageNumbers.map((np) => (//numero de pagina
                   <li key={np}>
                      <a className="" onClick={() => paginado(np)}>{np}</a>
                   </li>

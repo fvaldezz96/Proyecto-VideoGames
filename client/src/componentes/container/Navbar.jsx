@@ -10,64 +10,61 @@ export default function Navbar({
 
    const dispatch = useDispatch();
    const genres = useSelector((state) => state.genres);
+   // console.log(genres);
 
-   function handleFilter(funcion, e) {
-      dispatch(funcion(e.target.value))
+   function handleFilter(e) {
+      dispatch(getFilterByGenres(e.target.value))
    }
 
    return (
       <div className="contenedor">
          <div>
             <select
-               onChange={(e) => handleSortByName(e)}
+               onChange={(e) => { handleSortByName(e) }}
             >
-               <option className="" selected="false" disabled>Orden</option>
+               <option className="" disabled>Orden</option>
                <option className="" value="Asc">A-Z</option>
                <option className="" value="Dsc">Z-A</option>
 
             </select>
 
             <select
-               onChange={(e) => handleSortByRating(e)}
+               onChange={(e) => { handleSortByRating(e) }}
             >
-               <option className='' selected={true} disabled="disabled">
-                  Rating
-               </option>
+               <option className='' disabled="disabled"> Rating </option>
                <option className='' value="All">Todos</option>
-               <option value="Higth">Mayor puntuacion</option>
-               <option value="Low">Menor puntuacion</option>
+               <option className='' value="Higth">Mayor puntuacion</option>
+               <option className='' value="Low">Menor puntuacion</option>
             </select>
             <select
                name="genres"
                className=""
                /* Una función que se llama cuando se cambia la selección. */
                onChange={(e) => {
-                  handleFilter(getFilterByGenres, e)
+                  handleFilter(e)
                }}
             >
                <option
                   className=''
-                  value=""
-                  selected={true}
-                  distabled="distabled"
+                  value="All"
                >
-                  Elige un genero
-
+                  Todos los Genero
                </option>
-               {genres && genres.map((gJuego) => (
-                  <option
-                     className=''
-                     key={gJuego.id}
-                     value={gJuego.name}
-                  >
-                     {gJuego.name}
-                  </option>
-               ))}
+               {genres &&
+                  genres.map((genre) => (
+                     <option
+                        className=""
+                        key={genre.id}
+                        value={genre.name}
+                     >
+                        {genre.name}
+                     </option>
+                  ))}
             </select>
 
             <select
                className=""
-               onChange={(e) => handleFilterCreated(e)}
+               onChange={(e) => { handleFilterCreated(e) }}
             >
                <option className='' value="All"> Todos </option>
                <option className='' value="Db">Creados </option>
@@ -79,10 +76,6 @@ export default function Navbar({
       </div>
    )
 };
-
-
-
-
 
 
 //caso que necesite las plataformas y demas

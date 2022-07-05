@@ -89,44 +89,11 @@ router.get("/platforms", async (req, res) => {
       `https://api.rawg.io/api/platforms?key=${API_KEY}`
     );
     const plataformas = platformsApi.data.results;
-
-    // plataformas.forEach(async (v) => {
-    //   await Platform.findOrCreate({
-    //     where: {
-    //       name: v.name,
-    //     },
-    //   });
-    // });
-    // const platformsDataBase = await Platform.findAll();
     res.json(plataformas);
   } catch (err) {
     res.send(err);
   }
 });
-//filter by platform
-// router.get("/platforms/:id", async (req, res) => {
-//   const { id } = req.params;
-//   const gamesByPlatform = await axios.get(
-//     `https://api.rawg.io/api/games?platforms=${id}&key=${API_KEY}`
-//   );
-//   const info = gamesByPlatform.data.results;
-
-//   const mapeados = info?.map((v) => {
-//     const plataformas = v.platforms.map((g) => g.platform);
-//     return {
-//       id: v.id,
-//       name: v.name,
-//       img: v.background_image,
-//       description: v.description,
-//       released: v.released,
-//       rating: v.rating,
-//       platforms: plataformas,
-//       genres: v.genres,
-//     };
-//   });
-
-//   return res.json(mapeados);
-// });
 
 //Genres
 
@@ -144,31 +111,6 @@ router.get("/genres", async (req, res) => {
   });
   const allGenres = await Genre.findAll();
   res.status(200).send(allGenres);
-});
-
-//Filter by Genre
-router.get("/genres/:name", async (req, res) => {
-  const { name } = req.params;
-  const gamesByGenre = await axios.get(
-    `https://api.rawg.io/api/games?genres=${name}&key=${API_KEY}`
-  );
-  const info = gamesByGenre.data.results;
-
-  const mapeados = info?.map((v) => {
-    const plataformas = v.platforms.map((g) => g.platform);
-    return {
-      id: v.id,
-      name: v.name,
-      img: v.background_image,
-      description: v.description,
-      released: v.released,
-      rating: v.rating,
-      platforms: plataformas,
-      genres: v.genres,
-    };
-  });
-
-  return res.json(mapeados);
 });
 
 //videogame
@@ -199,6 +141,7 @@ router.get("/videogame/:id", async (req, res) => {
       const game = await axios.get(
         `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
       );
+      // console.log(game.data)
       return res.json(game.data);
     }
     if (id.length > 10) {
@@ -211,7 +154,7 @@ router.get("/videogame/:id", async (req, res) => {
       return res.json(dbGame);
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(404);
   }
 });

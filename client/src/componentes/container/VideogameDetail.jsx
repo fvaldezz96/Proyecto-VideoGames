@@ -13,8 +13,8 @@ export default function VideogameDetail(props) {
    /* Un gancho que se utiliza para realizar efectos secundarios en componentes de función. Es un
    reemplazo cercano para el componenteDidMount, el componenteDidUpdate y el componenteWillUnmount
    en las clases de React. */
-   const videogameDetail = useSelector((state) => state.VideogameDetail)
-
+   const videogameDetail = useSelector((state) => state.videogameDetail)
+   // console.log(videogameDetail);
    useEffect(() => {
       dispatch(getVideogameDetail(id)
       )
@@ -46,14 +46,14 @@ export default function VideogameDetail(props) {
                      <strong>Description:</strong>
                      {videogameDetail.description_raw || videogameDetail.description}
                   </p>
-                  <p>
+                  {/* <p>
                      <strong>Platafromas:</strong>
                      {videogameDetail.id?.length > 7
                         ? videogameDetail.platforms?.map((p) => p.name).join(", ")
                         : videogameDetail.platforms
                            ?.map((p) => p.platforms.name).join(", ")
                      }
-                  </p>
+                  </p> */}
                   <p>
                      <strong>fecha:</strong>
                      {videogameDetail.released || "None"}
@@ -65,7 +65,7 @@ export default function VideogameDetail(props) {
                </div>
             </div>
          ) : (
-            <p>Hola</p>
+            <p></p>
          )}
       </div>
    )
