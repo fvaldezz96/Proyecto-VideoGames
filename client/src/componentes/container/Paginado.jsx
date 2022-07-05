@@ -1,9 +1,9 @@
 
 
-export default function Paginado({ videogamesPerPage, allVideogames }) {
+export default function Paginado({ videogamesPerPage, allVideogames, paginado }) {
    const pageNumbers = []
 
-   for (let i = 1; i <= Meth.ceil(allVideogames / videogamesPerPage); i++) {
+   for (let i = 1; i <= Math.ceil(allVideogames / videogamesPerPage); i++) {
       pageNumbers.push(i)
    }
 
@@ -13,7 +13,7 @@ export default function Paginado({ videogamesPerPage, allVideogames }) {
             {
                pageNumbers && pageNumbers.map((np) => (//np == numero de pagina
                   <li key={np}>
-                     <a className="" onClick={() => Paginado(np)}>{np}</a>
+                     <a className="" onClick={() => paginado(np)}>{np}</a>
                   </li>
                ))
             }

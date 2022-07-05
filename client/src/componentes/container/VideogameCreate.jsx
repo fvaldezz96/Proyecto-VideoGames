@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { postVideogames, getGenres } from '../../redux/index';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function validaciones(input) {
    const errors = {};
    if (!input.name.trim()) {
-     errors.name = "A name is required";
+      errors.name = "A name is required";
    }
    if (!input.description.trim()) {
-     errors.description = "A description is required";
+      errors.description = "A description is required";
    }
    if (!input.released.trim()) {
-     errors.released = "The release date is required";
+      errors.released = "The release date is required";
    }
    return errors;
- }
+}
 
 export default function VideogameCreate() {
 
@@ -33,13 +32,18 @@ export default function VideogameCreate() {
       genres: [],
    })
 
-   const nombreValido = /^[a-zA-Z ]*$/
+   // const nombreValido = /^[a-zA-Z ]*$/
 
+   useEffect(() => {
+      dispatch(getGenres());
+   }, [])
+     
    function handleDelete(e) {
       setInput({
          ...input,
          genres: input.genres.filter((g) => g != e)
       })
+      // console.log(input)
    }
 
    function handleSubmit(e) {
@@ -95,10 +99,9 @@ export default function VideogameCreate() {
          ...input,
          platforms: [...input.platforms, e.target.value],
       });
-   }
-   useEffect(() => {
-      dispatch(getGenres());
-   }, [])
+   };
+
+
 
    //https://react-hook-form.com/api/useform/handlesubmit
    return (

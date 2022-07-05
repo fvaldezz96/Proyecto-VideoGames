@@ -4,11 +4,13 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Paginado from './Paginado';
 import SearchBar from './SearchBar';
-import VideogameCreate from './VideogameCreate';
-import VideogameDetail from './VideogameDetail';
+import Navbar from './Navbar';
+// import VideogameDetail from './VideogameDetail';
+import Card from './Card';
+// import VideogameCreate from './VideogameCreate';
 import {
-   getVideogames,
-   filterByGenre,
+   getVideogame,
+   // filterByGenre,
    filterCreated,
    getGenres,
    orderByName,
@@ -21,13 +23,13 @@ export default function Home() {
    const dispatch = useDispatch();
    const allVideogames = useSelector((state) => state.videogames);
    const [currentPage, setCurrentPage] = useState(1);
-   const [videogamesPerPage, setVideogamesPerPage] = useState(15);
 
-   const indexlastVideogame = currentPage * videogamesPerPage;
-   const indexFirstVideogame = indexlastVideogame - videogamesPerPage;
+   const [videogamesPerPage, setVideogamesPerPage] = useState(15);
+   const indexOfLastVideogame = currentPage * videogamesPerPage;
+   const indexOfFirstVideogame = indexOfLastVideogame - videogamesPerPage;
    const currentVideogames = allVideogames.slice(
-      indexlastVideogame,
-      indexFirstVideogame
+      indexOfFirstVideogame,
+      indexOfLastVideogame
    );
    const [order, setOrder] = useState("");
    /**
@@ -38,54 +40,63 @@ export default function Home() {
       setCurrentPage(pageNumber);
    };
 
-  
 
-
-
-
-
-
+   function handleFilterCreated(e) {
+      e.preventDefault();
+      dispatch(filterCreated(e.target.value));
+      setCurrentPage(1);
+      setOrder(e.target.value);
+   }
+   /**
+    * Cuando el usuario hace clic en el botón ordenar por nombre, se envía la acción orderByName, la
+    * página actual se establece en 1 y el orden se establece en el valor del botón en el que se hizo
+    * clic.
+    */
+   function handleSortByName(e) {
+      dispatch(orderByName(e.target.value));
+      setCurrentPage(1);
+      setOrder(e.target.value);
+   }
+   /**
+    * Cuando el usuario hace clic en el menú desplegable de calificación, se envía la acción
+    * orderByRating, la página actual se establece en 1 y el orden se establece en el valor del menú
+    * desplegable.
+    */
+   function handleSortByRating(e) {
+      dispatch(orderByRating(e.target.value));
+      setCurrentPage(1);
+      setOrder(e.target.value);
+   }
+   useEffect(() => {
+      dispatch(getVideogame());
+      dispatch(getGenres());
+      dispatch(getPlatforms());
+      dispatch(resetVideogameDetail())
+   }, [])
 
    return (
       <div>
-         <Header title="" />
+         <SearchBar />
          <div>
-            <SearchBar />
-            <Paginado
-               videogamesPerPage={videogamesPerPage}
-               allVideogames={allVideogames.length}
-               paginado={paginado}
-            />
-            <div className=''>
-               <div className=''>
-                  <Navbar
-
-                  />
-               </div>
-               <div>
-                  <ul className=''>
-                     {currentVideogames && currentVideogames.map((p) => {
-                        return (
-                           <VideogameDetail
-                              id={p.id}
-                              name={p.name}
-                              key={p.id}
-                              img={p.img}
-                              genres={p.genres}
-                              rating={p.rating}
-                              platforms={p.platforms}
-                           />
-                        )
-                     })}
-                  </ul>
-               </div>
-            </div>
-            <Paginado
-               videogamesPerPage={videogamesPerPage}
-               allVideogames={allVideogames}
-               paginado={paginado}
-            />
+            <Navbar />
          </div>
+         <Paginado
+            videogamesPerPage={videogamesPerPage}
+            allVideogames={allVideogames.length}
+            paginado={paginado}
+         />
+         {currentVideogames && currentVideogames.map((e) => {
+            // console.log(e)
+            return (
+               <Card
+                  key={e.id}
+                  name={e.name}
+                  image={e.img}
+                  genres={e.genres}
+                  rating={e.rating}
+               />
+            )
+         })}
       </div>
    )
 }

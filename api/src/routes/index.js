@@ -104,29 +104,29 @@ router.get("/platforms", async (req, res) => {
   }
 });
 //filter by platform
-router.get("/platforms/:id", async (req, res) => {
-  const { id } = req.params;
-  const gamesByPlatform = await axios.get(
-    `https://api.rawg.io/api/games?platforms=${id}&key=${API_KEY}`
-  );
-  const info = gamesByPlatform.data.results;
+// router.get("/platforms/:id", async (req, res) => {
+//   const { id } = req.params;
+//   const gamesByPlatform = await axios.get(
+//     `https://api.rawg.io/api/games?platforms=${id}&key=${API_KEY}`
+//   );
+//   const info = gamesByPlatform.data.results;
 
-  const mapeados = info?.map((v) => {
-    const plataformas = v.platforms.map((g) => g.platform);
-    return {
-      id: v.id,
-      name: v.name,
-      img: v.background_image,
-      description: v.description,
-      released: v.released,
-      rating: v.rating,
-      platforms: plataformas,
-      genres: v.genres,
-    };
-  });
+//   const mapeados = info?.map((v) => {
+//     const plataformas = v.platforms.map((g) => g.platform);
+//     return {
+//       id: v.id,
+//       name: v.name,
+//       img: v.background_image,
+//       description: v.description,
+//       released: v.released,
+//       rating: v.rating,
+//       platforms: plataformas,
+//       genres: v.genres,
+//     };
+//   });
 
-  return res.json(mapeados);
-});
+//   return res.json(mapeados);
+// });
 
 //Genres
 

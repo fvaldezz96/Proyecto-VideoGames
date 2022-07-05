@@ -28,11 +28,11 @@ export function getVideogame() {
    // en este caso tengo que llamar a la api para poder traeme todos los videogame
    return async function (dispatch) { //closure
       const videogamesData = await axios.get(
-         "http://localhost:3001/videogame", {})
+         "http://localhost:3001/videogames", {})
       //   console.log(api.data)
       return dispatch({
          type: GET_VIDEOGAMES,
-         payloand: videogamesData.data
+         payload: videogamesData.data
       })
    }
 }

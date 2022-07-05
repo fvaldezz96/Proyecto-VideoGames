@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { getVideogameDetail } from '../../redux/index';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 
 
-export default function detail(props) {
+export default function VideogameDetail(props) { 
 
    const dispatch = useDispatch();
    const { id } = props.match.params;
@@ -13,12 +13,14 @@ export default function detail(props) {
    /* Un gancho que se utiliza para realizar efectos secundarios en componentes de función. Es un
    reemplazo cercano para el componenteDidMount, el componenteDidUpdate y el componenteWillUnmount
    en las clases de React. */
+   const videogameDetail = useSelector((state) => state.VideogameDetail)
+
    useEffect(() => {
       dispatch(getVideogameDetail(id)
       )
    }, [id, dispatch])
 
-   const videogameDetail = useSelector((state) => state.VideogameDetail)
+
 
    return (
       <div>
@@ -63,7 +65,7 @@ export default function detail(props) {
                </div>
             </div>
          ) : (
-            <Spinner />
+            <p>Hola</p>
          )}
       </div>
    )

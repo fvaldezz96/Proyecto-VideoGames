@@ -2,6 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getNameVideogames } from '../../redux/index';
+// import { FaSearch } from "react-icons/fa";
+
 
 
 export default function SearchBar() {
@@ -22,7 +24,7 @@ export default function SearchBar() {
 
    return (
       <div>
-         <Form
+         <form
             className=""
             onSubmit={(e) => handleSubmit(e)}
          >
@@ -35,10 +37,10 @@ export default function SearchBar() {
                   placeholder="Buscar..."
                />
                <button className='' type='submit'>
-                  <FaSearch size={20} />
+                  {/* <FaSearch size={20} /> */}
                </button>
             </div>
-         </Form>
+         </form>
       </div>
    )
 }
