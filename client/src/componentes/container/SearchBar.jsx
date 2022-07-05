@@ -2,9 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getNameVideogames } from '../../redux/index';
-// import { FaSearch } from "react-icons/fa";
-
-
+import '../style.css/SearchBar.css';
 
 export default function SearchBar() {
 

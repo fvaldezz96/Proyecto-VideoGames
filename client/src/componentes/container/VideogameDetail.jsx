@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { getVideogameDetail } from '../../redux/index';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { Link } from 'react-router-dom';
+import '../style.css/VideogameDetail.css';
 
-
-export default function VideogameDetail(props) { 
+export default function VideogameDetail(props) {
 
    const dispatch = useDispatch();
    const { id } = props.match.params;

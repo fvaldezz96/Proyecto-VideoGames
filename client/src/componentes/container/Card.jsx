@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style.css/Card.css';
 
 function Card({ image, name, genres, rating }) {
      const genero = genres.map((e) => e.name)

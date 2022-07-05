@@ -1,4 +1,4 @@
-import '../style.css/paginado.css'
+import '../style.css/Paginado.css'
 
 export default function Paginado({ videogamesPerPage, allVideogames, paginado }) {
    const pageNumbers = []

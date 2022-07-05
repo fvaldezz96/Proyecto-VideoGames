@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import '../style.css/Landing.css';
 
 export default function Landing() {
      const history = useHistory();

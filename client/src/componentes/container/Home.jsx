@@ -7,6 +7,7 @@ import SearchBar from './SearchBar';
 import Navbar from './Navbar';
 import Card from './Card';
 import { Link } from 'react-router-dom';
+import '../style.css/Home.css';
 
 import {
    getVideogame,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilterByGenres } from '../../redux/index';
+import '../style.css/Navbar.css';
 
 export default function Navbar({
    handleFilterCreated,

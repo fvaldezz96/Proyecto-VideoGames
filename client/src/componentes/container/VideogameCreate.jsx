@@ -1,110 +1,112 @@
 import React, { useState, useEffect } from "react";
 import { postVideogames, getGenres } from '../../redux/index';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import '../style.css/VideogameCreate.css';
 
 function validate(input) {
-   const errors = {};
-   if (!input.name.trim()) {
-      errors.name = "A name is required";
-   }
-   if (!input.description.trim()) {
-      errors.description = "A description is required";
-   }
-   if (!input.released.trim()) {
-      errors.released = "The release date is required";
-   }
-   return errors;
+  const errors = {};
+  if (!input.name.trim()) {
+    errors.name = "A name is required";
+  }
+  if (!input.description.trim()) {
+    errors.description = "A description is required";
+  }
+  if (!input.released.trim()) {
+    errors.released = "The release date is required";
+  }
+  return errors;
 }
 
 export default function VideogameCreate() {
 
-   const dispatch = useDispatch();
-   const genres = useSelector((state) => state.genres);
-   // const platforms = useSelector((state) => state.platforms);
-   const [errors, setErrors] = useState({});
- 
-   const [input, setInput] = useState({
-     name: "",
-     description: "",
-     released: "",
-     rating: "",
-     platforms: [],
-     genres: [],
-   });
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const genres = useSelector((state) => state.genres);
+  // const platforms = useSelector((state) => state.platforms);
+  const [errors, setErrors] = useState({});
 
-   // const nombreValido = /^[a-zA-Z ]*$/
-     
-   function handleDelete(e) {
-      setInput({
-        ...input,
-        genres: input.genres.filter((g) => g !== e),
-      });
-    }
-    function handleDeletePlatform(e) {
-      setInput({
-        ...input,
-        platforms: input.platforms.filter((p) => p !== e),
-      });
-    }
-  
-    function handleChange(e) {
-      const { name, value } = e.target;
-      setInput({
+  const [input, setInput] = useState({
+    name: "",
+    description: "",
+    released: "",
+    rating: "",
+    platforms: [],
+    genres: [],
+  });
+
+  // const nombreValido = /^[a-zA-Z ]*$/
+
+  function handleDelete(e) {
+    setInput({
+      ...input,
+      genres: input.genres.filter((g) => g !== e),
+    });
+  }
+  function handleDeletePlatform(e) {
+    setInput({
+      ...input,
+      platforms: input.platforms.filter((p) => p !== e),
+    });
+  }
+
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setInput({
+      ...input,
+      [name]: value,
+    });
+    setErrors(
+      validate({
         ...input,
         [name]: value,
-      });
-      setErrors(
-        validate({
-          ...input,
-          [name]: value,
-        })
-      );
-    }
-    function handleSelectPlatform(e) {
-      setInput({
+      })
+    );
+  }
+  function handleSelectPlatform(e) {
+    setInput({
+      ...input,
+      platforms: [...input.platforms, e.target.value],
+    });
+  }
+  function handleSelect(e) {
+    setInput({
+      ...input,
+      genres: [...input.genres, e.target.value],
+    });
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    setErrors(
+      validate({
         ...input,
-        platforms: [...input.platforms, e.target.value],
-      });
-    }
-    function handleSelect(e) {
+        [e.target.name]: e.target.value,
+      })
+    );
+    if (Object.keys(errors).length === 0) {
+      dispatch(postVideogames(input));
+      alert("Your videogame has been created");
       setInput({
-        ...input,
-        genres: [...input.genres, e.target.value],
+        name: "",
+        description: "",
+        released: "",
+        rating: "",
+        platforms: [],
+        genres: [],
       });
+    } else {
+      alert("Your videogame couldn't be created");
+      return;
     }
-    function handleSubmit(e) {
-      e.preventDefault();
-      setErrors(
-        validate({
-          ...input,
-          [e.target.name]: e.target.value,
-        })
-      );
-      if (Object.keys(errors).length === 0) {
-        dispatch(postVideogames(input));
-        alert("Your videogame has been created");
-        setInput({
-          name: "",
-          description: "",
-          released: "",
-          rating: "",
-          platforms: [],
-          genres: [],
-        });
-      } else {
-        alert("Your videogame couldn't be created");
-        return;
-      }
-    }
-  
-    useEffect(() => {
-      dispatch(getGenres());
-    }, []);
+  }
 
-   //https://react-hook-form.com/api/useform/handlesubmit
-   return (
-      <div>
+  useEffect(() => {
+    dispatch(getGenres());
+  }, []);
+   
+  //https://react-hook-form.com/api/useform/handlesubmit
+  return (
+    <div>
       <Link to="/home">
         <button className="">Back</button>
       </Link>
