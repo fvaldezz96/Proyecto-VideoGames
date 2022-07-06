@@ -115,7 +115,7 @@ export default function VideogameCreate() {
         <button className="botonVolver">Volver</button>
       </Link>
       <main className="">
-        <h1 className="">Crear tu juego</h1>
+        <h1 className="">Crea tu juego</h1>
 
         <div className=""></div>
 

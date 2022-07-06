@@ -3,8 +3,17 @@
 .form {
      padding: 40px;
      max-width: 400px;
-     background-color: #E7E7E7;
+     /* background-color: transparent; */
      margin: 0 auto;
+     z-index:1;
+	filter:alpha(opacity=70);
+	-moz-opacity:.70;
+	opacity:.70;
+}
+
+.form:hover {
+     /* background-color: #E7E7E7; */
+     opacity: 100;
 }
 
 .input {
@@ -41,7 +50,7 @@
      color: white;
      font-family: "Roboto", sans-serif;
      position: center;
-     margin-top: 40px ;
+     margin-top: 40px;
 }
 
 .botonCrear:hover {
@@ -49,7 +58,8 @@
 }
 
 .botonVolver {
-     background-color: #e7e7e7;;
+     background-color: #e7e7e7;
+     ;
      padding: 4px 25px 5px 25px;
      border: 0;
      font-size: 1em;

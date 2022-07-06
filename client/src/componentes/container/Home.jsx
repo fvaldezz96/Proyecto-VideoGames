@@ -93,6 +93,11 @@ export default function Home() {
                handleSortByName={handleSortByName}
                handleSortByRating={handleSortByRating}
             />
+            <Paginado
+               videogamesPerPage={videogamesPerPage}
+               allVideogames={allVideogames.length}
+               paginado={paginado}
+            />
          </div>
          {currentVideogames && currentVideogames.map((e) => {
             // console.log(e)
@@ -108,11 +113,7 @@ export default function Home() {
                </Link>
             )
          })}
-         <Paginado
-            videogamesPerPage={videogamesPerPage}
-            allVideogames={allVideogames.length}
-            paginado={paginado}
-         />
+
       </div>
    )
 }
