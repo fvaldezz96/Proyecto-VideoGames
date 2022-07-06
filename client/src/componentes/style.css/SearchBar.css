@@ -1,0 +1,24 @@
+.contenedor{
+     position: inherit;
+}
+.container-3 {
+     width: 200px;
+     vertical-align: middle;
+     white-space: nowrap;
+     position: absolute;
+}
+
+.container-3 input#search {
+     width: 200px;
+     height: 30px;
+     background: #2b303b;
+     border: none;
+     font-size: 10pt;
+     float: left;
+     color: #262626;
+     padding-left: 45px;
+     -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+     border-radius: 0px;
+     color: #fff;
+}

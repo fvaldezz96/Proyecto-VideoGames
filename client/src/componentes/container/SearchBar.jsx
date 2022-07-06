@@ -23,22 +23,26 @@ export default function SearchBar() {
    return (
       <div>
          <form
-            className=""
+            className="contenedor"
             onSubmit={(e) => handleSubmit(e)}
          >
-            <div className=''>
+            <div className="container-3">
                <input
-                  type="text"
-                  className=""
+                  type="search"
+                  id="search"
                   value={name}
                   onChange={(e) => handleChange(e)}
                   placeholder="Buscar..."
                />
-               <button className='' type='submit'>
-                  {/* <FaSearch size={20} /> */}
-               </button>
+               {/* <button className='boton' type='submit'>
+                  Ir
+               </button> */}
             </div>
          </form>
       </div>
    )
 }
+{/* <div class="container-3">
+   <span class="icon"><i class="fa fa-search"></i></span>
+   <input type="search" id="search" placeholder="Search..." />
+</div> */}

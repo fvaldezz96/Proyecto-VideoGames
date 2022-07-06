@@ -23,6 +23,7 @@ import {
 // import VideogameCreate from './VideogameCreate';
 
 export default function Home() {
+
    const dispatch = useDispatch();
    const allVideogames = useSelector((state) => state.videogames);
 
@@ -85,7 +86,7 @@ export default function Home() {
       <div>
          <SearchBar />
          <Link to='/videogameCreate'>
-            <button>Crear juego</button>
+            <button className='crear' >crear juego</button>
          </Link>
          <div>
             <Navbar
@@ -93,6 +94,8 @@ export default function Home() {
                handleSortByName={handleSortByName}
                handleSortByRating={handleSortByRating}
             />
+         </div>
+         <div>
             <Paginado
                videogamesPerPage={videogamesPerPage}
                allVideogames={allVideogames.length}

@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400');
+@font-face {
+     font-family: 'JetBrainsMono-Light';
+     src: url('../../fuentes/JetBrainsMono-Light.ttf') format('woff2')
+}
+.crear {
+     background-color: #e7e7e7;
+     ;
+     padding: 4px 25px 5px 25px;
+     border: 0;
+     font-size: 1em;
+     color: white;
+     font-family: 'JetBrainsMono-Light';
+     position: center;
+     margin-top: 30px;
+}
+
+.crear:hover {
+     background-color: #8b0000;
+}

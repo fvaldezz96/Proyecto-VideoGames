@@ -1,0 +1,60 @@
+@font-face {
+     font-family: 'JetBrainsMono-Light';
+     src: url('../../fuentes/JetBrainsMono-Light.ttf') format('woff2')
+}
+
+.contenedor {
+     position: absolute;
+     top: 10px;
+     left: 0;
+     right: 0;
+     bottom: 200px;
+     margin: auto;
+     height: 100px;
+     width: 500px;
+}
+
+a {
+     text-decoration: none;
+     font-family: 'JetBrainsMono-Light';
+     color: #FFF;
+}
+
+.button {
+     margin: auto;
+     width: calc(9vw + 4px);
+     height: calc(3vw + 5px);
+     background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
+     border-radius: 5px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-transform: uppercase;
+     font-size: 1.20vw;
+     font-weight: bold;
+}
+
+.button:after {
+     content: attr(alt);
+     width: 9vw;
+     height: 3vw;
+     background-color: #191919;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.button:hover {
+     animation: slidebg 2s linear infinite;
+}
+
+@keyframes slidebg {
+     to {
+          background-position: 20vw;
+     }
+}
+
+.title {
+     margin-top: auto;
+     font-family: 'JetBrainsMono-Light';
+}
