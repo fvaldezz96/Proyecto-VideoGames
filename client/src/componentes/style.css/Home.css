@@ -1,8 +1,30 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400');
+
 @font-face {
      font-family: 'JetBrainsMono-Light';
      src: url('../../fuentes/JetBrainsMono-Light.ttf') format('woff2')
 }
+
+.botones{
+     display: grid;
+     grid-template-columns: repeat(2, 1fr);
+     align-items: center;
+     justify-content: center;
+     background-color: transparent;
+     margin-bottom: -2vh;
+     padding: 2vh 0;
+     grid-gap: 2rem;
+     margin-top: -3rem;
+}
+
+.primerContenedor {
+     justify-content: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     margin-right: 30px;
+}
+
 .crear {
      background-color: #e7e7e7;
      ;
@@ -16,5 +38,35 @@
 }
 
 .crear:hover {
+     background-color: #8b0000;
+}
+
+.Card {
+     display: grid;
+     flex-wrap: no-wrap;
+     grid-template-columns: repeat(4, 1fr);
+     align-items: center;
+     justify-content: center;
+     padding: 3vh 0;
+     grid-gap: 1.5rem;
+     flex-direction: row;
+     left: 20px
+}
+
+
+
+.actualizar {
+     background-color: #e7e7e7;
+     ;
+     padding: 4px 25px 5px 25px;
+     border: 0;
+     font-size: 1em;
+     color: white;
+     font-family: 'JetBrainsMono-Light';
+     position: center;
+     margin-top: 30px;
+}
+
+.actualizar:hover {
      background-color: #8b0000;
 }

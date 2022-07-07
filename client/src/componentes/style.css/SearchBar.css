@@ -1,11 +1,16 @@
-.contenedor{
-     position: inherit;
+
+.contenedor {
+     display: flex;
+     align-items: center;
+     justify-content: center;
 }
+
 .container-3 {
      width: 200px;
      vertical-align: middle;
      white-space: nowrap;
-     position: absolute;
+     align-items: center;
+     display: flex;
 }
 
 .container-3 input#search {

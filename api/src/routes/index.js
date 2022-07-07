@@ -65,6 +65,7 @@ const getAllVideogames = async () => {
   const apiInfo = await getApiInfo();
   const dbInfo = await getDbInfo();
   const info = apiInfo.concat(dbInfo);
+  // console.log(info)
   return info;
 };
 

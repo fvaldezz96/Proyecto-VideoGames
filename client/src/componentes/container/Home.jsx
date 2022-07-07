@@ -75,6 +75,12 @@ export default function Home() {
       setCurrentPage(1);
       setOrder(e.target.value);
    }
+
+   function handleReset(e) {
+      e.preventDefault();
+      dispatch(getVideogame());
+   }
+
    useEffect(() => {
       dispatch(getVideogame());
       dispatch(getGenres());
@@ -83,11 +89,18 @@ export default function Home() {
    }, [])
 
    return (
-      <div>
-         <SearchBar />
+      <div className='primerContenedor'>
+         <div className='buscador'>
+            <SearchBar />
+         </div>
+
+         <div className='botones'>
+         <button className='actualizar' onClick={(e) => handleReset(e)}>actualizar</button>
          <Link to='/videogameCreate'>
             <button className='crear' >crear juego</button>
          </Link>
+         </div>
+         
          <div>
             <Navbar
                handleFilterCreated={handleFilterCreated}
@@ -102,20 +115,25 @@ export default function Home() {
                paginado={paginado}
             />
          </div>
-         {currentVideogames && currentVideogames.map((e) => {
-            // console.log(e)
-            return (
-               <Link to={`/videogame/${e.id}`}>
-                  <Card
-                     key={e.id}
-                     name={e.name}
-                     image={e.img}
-                     genres={e.genres}
-                     rating={e.rating}
-                  />
-               </Link>
-            )
-         })}
+         <div className='Card'>
+            {currentVideogames && currentVideogames.map((e) => {
+               // console.log(e)
+               return (
+                  <div>
+                     <Link to={`/videogame/${e.id}`}>
+                        <Card
+                           key={e.id}
+                           name={e.name}
+                           image={e.img}
+                           genres={e.genres}
+                           rating={e.rating}
+                        />
+                     </Link>
+                  </div>
+
+               )
+            })}
+         </div>
 
       </div>
    )

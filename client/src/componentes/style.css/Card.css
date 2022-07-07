@@ -1,12 +1,48 @@
-.imagen{
-    height: 150px;
-    width: 250px;
+.card {
+    width: 18rem;
+    height: 22rem;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    background-color: rgba(255, 255, 255, 0.500);
+    /* background-color: ; */
+    border: 4px solid #fff;
 }
 
-.card{
-     display: flex;
-     justify-content: center;
-     flex-direction: row;
-     align-items: stretch;
-     height: 250px;
+.name {
+    text-align: center;
+    align-items: center;
+    font-family: url('../../fuentes/JetBrainsMono-Light.ttf');
+    font-size: 19px;
+    position: absolute;
+    top: 20px;
+    left: 50px;
+    z-index: 2;
+}
+
+
+
+.imagen {
+    width: 16rem;
+    height: 9rem;
+    margin-left: 16px;
+    position: center;
+    z-index: 0;
+}
+
+.genero {
+    position: absolute;
+    bottom: 50px;
+    left: 60px;
+    align-items: center;
+}
+
+.rating {
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    left: 120px;
 }
