@@ -10,12 +10,21 @@ export default function Landing() {
      }
 
      return (
-          <div className="contenedor">
-               <h1 className='title'>Bienvenidos a Videogames</h1>
-               <div>
-                    <a className="button" alt="Inicio" onChange={(e) =>  handleChange(e) } onClick={() => history.push("/home")}></a>
+          <div className="container-fluid" onChange={(e) => handleChange(e)}>
+               <div className="row home">
+                    <div className="col-md-12 splash">
+                         <a>
+                              <div className="intro">
+                                   <h1 className='tituloPagina'>Bienvenido a Videogames</h1>
+                              </div>
+                              <a className="btn btn-default CTA" alt="play" onClick={() => {history.push('/home')}}> </a>
+                              <div className="sub">
+                                   <p></p>
+                              </div>
+                         </a>
+                    </div>
                </div>
-          </div >
+          </div>
      )
 }
 
