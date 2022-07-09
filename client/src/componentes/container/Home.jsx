@@ -95,7 +95,7 @@ export default function Home() {
          </div>
 
          <div className='botones'>
-         <button className='actualizar' onClick={(e) => handleReset(e)}>actualizar</button>
+         <button className='actualizar' onClick={(e) => handleReset(e)}><i class="fa-solid fa-arrows-rotate"></i></button>
          <Link to='/videogameCreate'>
             <button className='crear' >crear juego</button>
          </Link>

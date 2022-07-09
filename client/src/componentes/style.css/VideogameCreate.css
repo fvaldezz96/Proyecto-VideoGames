@@ -1,5 +1,15 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
+@font-face {
+     font-family: 'JetBrainsMono-Light';
+     src: url('../../fuentes/JetBrainsMono-Light.ttf')
+}
+
+a {
+     margin-top: 6%;
+     font-family: url('../../fuentes/JetBrainsMono-Light.ttf');
+}
+
 .form {
      padding: 40px;
      max-width: 400px;
@@ -79,10 +89,16 @@
      position: fixed;
 }
 
-.url{
-     width: 16rem;
-    height: 9.40rem;
-    margin-left: 16px;
-    position: center;
-    z-index: 0; 
+.url {
+     margin: bottom 15px;
+     font-family: "Roboto", sans-serif;
+     width: 100%;
+     padding: 10px;
+     box-sizing: border-box;
+     border: none;
+     margin-top: 6%;
+     color: #525c66;
+     font-size: 1em;
+     resize: none;
+     text-align: start;
 }

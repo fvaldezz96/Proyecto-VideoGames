@@ -28,14 +28,13 @@
 
 .crear {
      background-color: #e7e7e7;
-     ;
      padding: 4px 25px 5px 25px;
      border: 0;
      font-size: 1em;
      color: white;
      font-family: 'JetBrainsMono-Light';
      position: center;
-     margin-top: 30px;
+     margin-top: 21px;
 }
 
 .crear:hover {
@@ -58,7 +57,6 @@
 
 .actualizar {
      background-color: #e7e7e7;
-     ;
      padding: 4px 25px 5px 25px;
      border: 0;
      font-size: 1em;

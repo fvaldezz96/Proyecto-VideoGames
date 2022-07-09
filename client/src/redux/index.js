@@ -43,10 +43,10 @@ export function getVideogame() {
 //      }
 // }
 
-export function getNameVideogames() {
+export function getNameVideogames(name) {
    return async function (dispatch) {
       try {
-         const namesData = await axios.get("http://localhost:3001/videogames?name=")
+         const namesData = await axios.get("http://localhost:3001/videogames?name="  + name)
          return dispatch({
             type: GET_NAME_VIDEOGAMES,
             payload: namesData.data

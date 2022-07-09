@@ -32,7 +32,7 @@ export default function SearchBar() {
                onChange={(e) => handleChange(e)}
                placeholder="Buscar..."
             />
-            <button className='botonIr' type='submit' onClick={(e) => handleSubmit(e)}><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button className='botonIr' type='submit' onClick={(e) => handleSubmit(e)}><i className="fa-solid fa-magnifying-glass"></i></button>
          </div>
       </div>
    )
