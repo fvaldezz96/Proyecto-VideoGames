@@ -2,8 +2,13 @@
      font-family: url('../../fuentes/JetBrainsMono-Light.ttf');
 }
 
+* {
+     padding: 0;
+     margin: 0;
+}
+
 .detalle {
-     width: 40rem;
+     width: 80rem;
      height: 35rem;
      display: flex;
      align-items: center;
@@ -11,12 +16,37 @@
      flex-direction: row;
      position: center;
      margin: auto;
+     overflow: auto;
      cursor: pointer;
      border: 1px solid black;
      background-color: rgba(255, 255, 255, 0.700);
      transition: transform .2s;
 }
-
+.detalle::-webkit-scrollbar {
+     -webkit-appearance: none;
+ }
+ 
+ .detalle::-webkit-scrollbar:vertical {
+     width:10px;
+ }
+ 
+ .detalle::-webkit-scrollbar-button:increment,.detalle::-webkit-scrollbar-button {
+     display: none;
+ } 
+ 
+ .detalle::-webkit-scrollbar:horizontal {
+     height: 10px;
+ }
+ 
+ .detalle::-webkit-scrollbar-thumb {
+     background-color: #797979;
+     border-radius: 20px;
+     border: 2px solid #f1f2f3;
+ }
+ 
+ .detalle::-webkit-scrollbar-track {
+     border-radius: 10px;  
+ }
 
 .detalle:hover {
      transform: scale(1.03);
@@ -25,8 +55,8 @@
 
 .imagenes {
      display: relative;
-     width: 600px;
-     height: 400px;
+     width: 500px;
+     height: 300px;
 }
 
 .botonVolver {
