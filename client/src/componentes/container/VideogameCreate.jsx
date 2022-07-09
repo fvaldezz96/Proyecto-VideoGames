@@ -34,8 +34,9 @@ export default function VideogameCreate() {
     description: "",
     released: "",
     rating: "",
-    platforms: [],
+    background_image: "",
     genres: [],
+    // platforms: [],
   });
 
   // const nombreValido = /^[a-zA-Z ]*$/
@@ -88,18 +89,19 @@ export default function VideogameCreate() {
     );
     if (Object.keys(errors).length === 0) {
       dispatch(postVideogames(input));
-      alert("Your videogame has been created");
+      alert("Tu juego fue creado con exito");
       setInput({
         name: "",
         description: "",
         released: "",
         rating: "",
-        platforms: [],
+        background_image: "",
+        // platforms: [],
         genres: [],
       });
       history.push('/home')
     } else {
-      alert("Your videogame couldn't be created");
+      alert("No se pudo crear tu juego");
       return;
     }
   }
@@ -157,7 +159,19 @@ export default function VideogameCreate() {
               onChange={(e) => handleChange(e)}
             />
           </div>
-          <div className="">
+          <div >
+            <label className="" ></label>
+            <input
+              className="url"
+              type="url"
+              name="background_image"
+              value={input.background_image}
+              placeholder="URL"
+              onChange={(e) => handleChange(e)}
+            />
+          </div>
+          <br />
+          <div >
             <br />
             <textarea
               placeholder="Escribe una breve descripcion de tu juego"

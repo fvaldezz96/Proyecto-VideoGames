@@ -18,11 +18,16 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    background_image: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      defaultValue: 'https://cdn.pixabay.com/photo/2016/07/30/21/03/mario-1558012__340.jpg'
+    },
     released: {
       type: DataTypes.DATEONLY
     },
     rating: {
       type: DataTypes.FLOAT
-    },   
+    },
   });
 };

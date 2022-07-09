@@ -17,8 +17,8 @@ import {
 let initialState = {
      videogames: [],
      allvideogames: [],
-     platforms: [],
-     videogameDetail:[],
+     // platforms: [],
+     videogameDetail: [],
      genres: [],
 }
 
@@ -68,7 +68,7 @@ export default function rootReducer(state = initialState, action) {
                     action.payload === "All"
                          ? state.allvideogames
                          : state.allvideogames.filter((g) => {
-                             /* Filtrando los videojuegos por género. */
+                              /* Filtrando los videojuegos por género. */
                               return g.genres.find((g) => {
                                    return g.name === action.payload;
                               });

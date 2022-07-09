@@ -5,10 +5,10 @@
      max-width: 400px;
      /* background-color: transparent; */
      margin: 0 auto;
-     z-index:1;
-	filter:alpha(opacity=70);
-	-moz-opacity:.70;
-	opacity:.70;
+     z-index: 1;
+     filter: alpha(opacity=70);
+     -moz-opacity: .70;
+     opacity: .70;
 }
 
 .form:hover {
@@ -59,7 +59,6 @@
 
 .botonVolver {
      background-color: #e7e7e7;
-     
      padding: 4px 25px 5px 25px;
      border: 0;
      font-size: 1em;
@@ -69,9 +68,21 @@
      margin-top: 30px;
 }
 
+.botonVolver:hover {
+     background-color: #046193;
+}
+
 .botonSelect {
      background-color: white;
      border: 0.2px solid #e7e7e7;
      margin: 5px;
      position: fixed;
+}
+
+.url{
+     width: 16rem;
+    height: 9.40rem;
+    margin-left: 16px;
+    position: center;
+    z-index: 0; 
 }

@@ -9,9 +9,7 @@ export default function VideogameDetail(props) {
    const dispatch = useDispatch();
    const { id } = props.match.params;
 
-   /* Un gancho que se utiliza para realizar efectos secundarios en componentes de función. Es un
-   reemplazo cercano para el componenteDidMount, el componenteDidUpdate y el componenteWillUnmount
-   en las clases de React. */
+
    const videogameDetail = useSelector((state) => state.videogameDetail)
    // console.log(videogameDetail);
    useEffect(() => {
@@ -24,49 +22,42 @@ export default function VideogameDetail(props) {
    return (
       <div>
          <Link to="/home">
-            <button>volver</button>
+            <button className="botonVolver">volver</button>
          </Link>
-         {videogameDetail ? (
-            <div className=''>
-               <img className=''
-                  src={
-                     videogameDetail.background_image ||
-                     "https://m.media-amazon.com/images/I/611fcGzpVUL.jpg"
-                  }
-                  alt=""
-               />
-               <div className=''>
-                  <p className=''>{videogameDetail.name}</p>
-                  <p>
-                     <strong>Generos:</strong>{" "}
-                     {videogameDetail.genres?.map((g) => g.name).join(",")}
-                  </p>
-                  <p>
-                     <strong>Description:</strong>
-                     {videogameDetail.description_raw || videogameDetail.description}
-                  </p>
-                  {/* <p>
-                     <strong>Platafromas:</strong>
-                     {videogameDetail.id?.length > 7
-                        ? videogameDetail.platforms?.map((p) => p.name).join(", ")
-                        : videogameDetail.platforms
-                           ?.map((p) => p.platforms.name).join(", ")
-                     }
-                  </p> */}
-                  <p>
-                     <strong>fecha:</strong>
-                     {videogameDetail.released || "None"}
-                  </p>
-                  <p>
-                     <strong>Puntuacion: </strong>
-                     {videogameDetail.rating}
-                  </p>
+         <div className="detalle">
+            {videogameDetail ? (
+               <div className="">
+                  <p className="nombreDetalle">{videogameDetail.name}</p>
+                  <div className="">
+                     <img
+                        className="imagenes"
+                        src={
+                           videogameDetail.background_image ||
+                           "https://www.acbar.org/Website/Loader/loader3.gif"
+                        }
+                        alt=""
+                     />
+                  </div>
+
+                  <p className="parrafos">{videogameDetail.genres?.map((g) => g.name).join(", ")}</p>{" "}
+                  <p className="parrafos"> {videogameDetail.description_raw || videogameDetail.description}</p>
+
+                  <p className="parrafos"> {videogameDetail.released || "None"}</p>
+                  <p className="parrafos">★{videogameDetail.rating}</p>
                </div>
-            </div>
-         ) : (
-            <p></p>
-         )}
+            ) : (
+               <h5>no se encontro el detalle</h5>
+            )}
+         </div>
+
       </div>
    )
-}
-
+};
+{/* <p className="parrafos">
+        <p className="parrafos">Platforms:</p>
+                        {videogameDetail.id?.length > 7
+                           ? videogameDetail.platforms?.map((p) => p.name).join(", ")
+                           : videogameDetail.platforms
+                              ?.map((p) => p.platform.name)
+                              .join(", ")}
+                     </p> */}

@@ -9,10 +9,15 @@ export default function SearchBar() {
    const dispatch = useDispatch();
    const [name, setName] = useState("");
 
+   /**
+    * La función handleChange toma un evento como argumento, evita la acción predeterminada y establece
+    * el estado del nombre en el valor del objetivo.
+    */
    function handleChange(e) {
       e.preventDefault();
       setName(e.target.value);
    }
+
    function handleSubmit(e) {
       e.preventDefault();
       dispatch(getNameVideogames(name));
@@ -23,7 +28,7 @@ export default function SearchBar() {
    return (
       <div>
          <form
-            className="contenedor"
+            className="contenedorSearch"
             onSubmit={(e) => handleSubmit(e)}
          >
             <div className="container-3">
@@ -34,9 +39,7 @@ export default function SearchBar() {
                   onChange={(e) => handleChange(e)}
                   placeholder="Buscar..."
                />
-               {/* <button className='boton' type='submit'>
-                  Ir
-               </button> */}
+               <button className='botonIr' type='submit'><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
          </form>
       </div>

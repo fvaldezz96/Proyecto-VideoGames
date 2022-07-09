@@ -1,24 +1,27 @@
 .numberContainer {
     display: flex;
     justify-content: center;
-    height: 5vh;
+    height: 4vh;
     background-color: #fcd5d099;
     background-position: bottom;
     position: center;
     z-index: 0;
     align-items: center;
     padding: 0 3vw;
+    cursor: pointer;
+    margin-top: 5%;
 }
 
 .number {
-    color: #f7825b;
+    color: black;
     font-weight: 700;
     font-size: large;
     margin: 1em;
+    transition: transform .2s;
 }
 
-.number:hover:not(.active) {
+.number:hover {
+    transform: scale(1.1);
     cursor: pointer;
-    color: #7a6653;
     background-color: #8b0000;
 }

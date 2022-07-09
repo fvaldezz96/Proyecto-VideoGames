@@ -1,8 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
-.contenedor {
+.contenedorSearch {
      display: flex;
      align-items: center;
      justify-content: center;
+     margin-top: 4%;
 }
 
 .container-3 {
@@ -14,7 +16,7 @@
 }
 
 .container-3 input#search {
-     width: 200px;
+     width: 160px;
      height: 30px;
      background: #2b303b;
      border: none;
@@ -26,4 +28,19 @@
      -moz-border-radius: 5px;
      border-radius: 0px;
      color: #fff;
+     margin-top: 4%;
+
+}
+
+.botonIr {
+     background-color: #2b303b;
+     /* padding: 10px 45px 10px 45px; */
+     margin-top: 8px;
+     width: 600px;
+     height: 30px;
+     border: 0;
+     font-size: 1em;
+     color: white;
+     font-family: "Roboto", sans-serif;
+     position: center;
 }

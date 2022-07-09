@@ -98,7 +98,7 @@ router.get("/platforms", async (req, res) => {
 
 //Genres
 
-router.get("/genres", async (req, res) => { 
+router.get("/genres", async (req, res) => {
   const genresApi = await axios.get(
     `https://api.rawg.io/api/genres?key=${API_KEY}`
   );
@@ -117,16 +117,19 @@ router.get("/genres", async (req, res) => {
 //videogame
 
 router.post("/videogame", async (req, res) => {
-  let { name, description, released, rating, platforms, genres } = req.body;
+  let { name, description, released, background_image, rating, platforms, genres } = req.body;
   let createVideogame = await Videogame.create({
     name,
     description,
     released,
     rating,
+    background_image,
   });
+  /* Encontrar todos los géneros que coincidan con el nombre del género que se está pasando. */
   let DbGenre = await Genre.findAll({
     where: { name: genres },
   });
+  
   let dbPlatform = await Platform.findAll({
     where: { name: platforms },
   });

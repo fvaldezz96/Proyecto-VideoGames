@@ -18,7 +18,7 @@ export default function Navbar({
    }
 
    return (
-      <div className="contenedor">
+      <div className="contenedorNavBar">
          <div>
             <select
                onChange={(e) => { handleSortByName(e) }}
@@ -34,8 +34,8 @@ export default function Navbar({
             >
                <option className='' disabled="disabled"> Rating </option>
                <option className='' value="All">Todos</option>
-               <option className='' value="Higth">Mayor puntuacion</option>
-               <option className='' value="Low">Menor puntuacion</option>
+               <option className='' value="Higth">Mayor puntuación</option>
+               <option className='' value="Low">Menor puntuación</option>
             </select>
             <select
                name="genres"
@@ -49,7 +49,7 @@ export default function Navbar({
                   className=''
                   value="All"
                >
-                  Todos los Genero
+                  Todos los Géneros
                </option>
                {genres &&
                   genres.map((genre) => (
@@ -68,8 +68,8 @@ export default function Navbar({
                onChange={(e) => { handleFilterCreated(e) }}
             >
                <option className='' value="All"> Todos </option>
-               <option className='' value="Db">Creados </option>
-               <option className='' value="Api"> Existente</option>
+               <option className='' value="Created">Creados </option>
+               <option className='' value="Api"> Existentes</option>
 
             </select>
 
