@@ -49,7 +49,7 @@ a {
      content: attr(alt);
      width: 12vw;
      height: 5vw;
-     background-color: rgba(255, 255, 255, 0.700);
+     background-color: rgba(255, 255, 255, 1);
      display: flex;
      align-items: center;
      justify-content: center;
