@@ -19,7 +19,7 @@ export default function Navbar({
 
    return (
       <div className="contenedorNavBar">
-         <div>
+         <div >
             <select
                onChange={(e) => { handleSortByName(e) }}
             >
