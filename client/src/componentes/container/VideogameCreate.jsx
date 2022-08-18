@@ -55,9 +55,13 @@ export default function VideogameCreate() {
   // }
 
   function handleChange(e) {
+    /* Destrucción del destino del evento. */
     const { name, value } = e.target;
+    /* `e.target` es el destino del evento. */
     setInput({
       ...input,
+      /* Un nombre de propiedad calculado. Es una forma de establecer la clave de un objeto en una
+      variable. */
       [name]: value,
     });
     setErrors(
@@ -88,7 +92,9 @@ export default function VideogameCreate() {
       })
     );
     if (Object.keys(errors).length === 0) {
+      /* Comprobando si el objeto de errores está vacío. */
       dispatch(postVideogames(input));
+      /* Despachando la acción `postVideogames` con `input` como parámetro. */
       alert("Tu juego fue creado con exito");
       setInput({
         name: "",
@@ -153,6 +159,7 @@ export default function VideogameCreate() {
               placeholder="Rating"
               type="number"
               name="rating"
+              /* Establecer el valor de la entrada al valor del estado. */
               value={input.rating}
               min="0"
               max="5"

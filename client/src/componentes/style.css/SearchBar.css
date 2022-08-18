@@ -1,10 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
 .contenedorSearch {
-     display: flex;
-     align-items: center;
      justify-content: center;
+     align-items: center;
      margin-top: 4%;
+     display: flex;
 }
 
 .container-3 {
@@ -18,7 +18,7 @@
 .container-3 input#search {
      width: 160px;
      height: 30px;
-     background: #2b303b;
+     background: #000000a3;
      border: none;
      font-size: 10pt;
      float: left;
@@ -29,16 +29,13 @@
      border-radius: 0px;
      color: #fff;
      margin-top: 4%;
-
 }
 
 .botonIr {
-     background-color: #2b303b;
-     /* padding: 10px 45px 10px 45px; */
+     background-color: #000000b3;
      margin-top: 8px;
      width: 600px;
      height: 30px;
-     margin-left: 3%;
      border: 0;
      font-size: 1em;
      color: white;

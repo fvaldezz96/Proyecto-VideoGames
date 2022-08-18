@@ -8,47 +8,34 @@ export default function Navbar({
    handleSortByRating,
    handleSortByName
 }) {
-
    const dispatch = useDispatch();
    const genres = useSelector((state) => state.genres);
-   // console.log(genres);
 
    function handleFilter(e) {
       dispatch(getFilterByGenres(e.target.value))
    }
-
    return (
-      <div className="contenedorNavBar">
+      <div >
          <div >
-            <select
-               onChange={(e) => { handleSortByName(e) }}
-            >
-               <option className="" disabled>Orden</option>
-               <option className="" value="Asc">A-Z</option>
-               <option className="" value="Dsc">Z-A</option>
-
+            <select onChange={(e) => { handleSortByName(e) }}>
+               <option disabled>Orden</option>
+               <option value="Asc">A-Z</option>
+               <option value="Dsc">Z-A</option>
             </select>
-
-            <select
-               onChange={(e) => { handleSortByRating(e) }}
-            >
-               <option className='' disabled="disabled"> Rating </option>
-               <option className='' value="All">Todos</option>
-               <option className='' value="Higth">Mayor puntuación</option>
-               <option className='' value="Low">Menor puntuación</option>
+            <select onChange={(e) => { handleSortByRating(e) }}>
+               <option disabled="disabled"> Rating </option>
+               <option value="All">Todos</option>
+               <option value="Higth">Mayor puntuación</option>
+               <option value="Low">Menor puntuación</option>
             </select>
             <select
                name="genres"
                className=""
-               /* Una función que se llama cuando se cambia la selección. */
                onChange={(e) => {
                   handleFilter(e)
                }}
             >
-               <option
-                  className=''
-                  value="All"
-               >
+               <option value="All">
                   Todos los Géneros
                </option>
                {genres &&
@@ -62,17 +49,11 @@ export default function Navbar({
                      </option>
                   ))}
             </select>
-
-            <select
-               className=""
-               onChange={(e) => { handleFilterCreated(e) }}
-            >
-               <option className='' value="All"> Todos </option>
-               <option className='' value="Created">Creados </option>
-               <option className='' value="Api"> Existentes</option>
-
+            <select onChange={(e) => { handleFilterCreated(e) }}>
+               <option value="All"> Todos </option>
+               <option value="Created">Creados </option>
+               <option value="Api"> Existentes</option>
             </select>
-
          </div>
       </div>
    )

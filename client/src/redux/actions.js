@@ -3,6 +3,7 @@ export const FILTER_BY_GENRE = "FILTER_BY_GENRE";
 export const RESET_FILTERS = "RESET_FILTERS";
 export const RESET_DETAILS = "RESET_DETAILS";
 export const GET_NAME_VIDEOGAMES = "GET_NAME_VIDEOGAMES";
+/* Una constante que se utiliza para obtener el nombre de los videojuegos. */
 export const GET_VIDEOGAMES = "GET_VIDEOGAMES";
 export const GET_VIDEOGAME_DETAIL = "GET_VIDEOGAME_DETAIL";
 export const GET_PLATFORMS = "GET_PLATFORMS";

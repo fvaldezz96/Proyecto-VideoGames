@@ -22,9 +22,6 @@ let initialState = {
      genres: [],
 }
 
-// EL REDUCER SIEMPRE TIENE QUE GENERAR UN NUEVO ESTADO,
-// ESTE ES EL ESTADO GLOBAL!!! osea cuando se modifique algo
-
 export default function rootReducer(state = initialState, action) {
      switch (action.type) {
           case GET_VIDEOGAMES:
@@ -68,7 +65,6 @@ export default function rootReducer(state = initialState, action) {
                     action.payload === "All"
                          ? state.allvideogames
                          : state.allvideogames.filter((g) => {
-                              /* Filtrando los videojuegos por género. */
                               return g.genres.find((g) => {
                                    return g.name === action.payload;
                               });

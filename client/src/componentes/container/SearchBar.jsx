@@ -9,11 +9,9 @@ export default function SearchBar() {
    const dispatch = useDispatch();
    const [name, setName] = useState("");
 
-
    function handleSubmit(e) {
       e.preventDefault();
       dispatch(getNameVideogames(name));
-      // console.log(getNameVideogames())
       setName("");
    }
 
@@ -32,7 +30,6 @@ export default function SearchBar() {
                onChange={(e) => handleChange(e)}
                placeholder="Buscar..."
             />
-            {/* {} */}
             <button className='botonIr' type='submit' onClick={(e) => handleSubmit(e)}><i className="fa-solid fa-magnifying-glass"></i></button>
          </div>
       </div>

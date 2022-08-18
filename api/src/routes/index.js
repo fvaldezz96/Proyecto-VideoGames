@@ -6,11 +6,6 @@ const { Videogame, Genre, Platform } = require("../db");
 
 const router = Router();
 
-/**
- * La función utiliza la biblioteca axios para realizar una solicitud GET a la API RAWG. La API
- * devuelve un objeto JSON con una lista de juegos. Luego, la función está empujando los juegos a una
- * matriz.
- */
 const getApiInfo = async () => {
   var games = [];
   const apiUrl1 = axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`);
@@ -65,7 +60,6 @@ const getAllVideogames = async () => {
   const apiInfo = await getApiInfo();
   const dbInfo = await getDbInfo();
   const info = apiInfo.concat(dbInfo);
-  // console.log(info)
   return info;
 };
 
@@ -125,7 +119,6 @@ router.post("/videogame", async (req, res) => {
     rating,
     background_image,
   });
-  /* Encontrar todos los géneros que coincidan con el nombre del género que se está pasando. */
   let DbGenre = await Genre.findAll({
     where: { name: genres },
   });
@@ -145,7 +138,6 @@ router.get("/videogame/:id", async (req, res) => {
       const game = await axios.get(
         `https://api.rawg.io/api/games/${id}?key=${API_KEY}`
       );
-      // console.log(game.data)
       return res.json(game.data);
     }
     if (id.length > 10) {
@@ -158,7 +150,6 @@ router.get("/videogame/:id", async (req, res) => {
       return res.json(dbGame);
     }
   } catch (error) {
-    // console.log(error);
     res.status(404);
   }
 });

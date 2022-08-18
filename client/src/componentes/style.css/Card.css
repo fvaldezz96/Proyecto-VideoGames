@@ -1,16 +1,15 @@
 .card {
-    width: 18rem;
-    height: 22rem;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    display: flex;
-    flex-direction: row;
     position: relative;
     text-align: center;
-    z-index: 2;
-    background-color: rgba(255, 255, 255, 0.700);
-    border: 2px solid #fff;
+    display: flex;
+    width: 18rem;
+    height: 22rem;
+    background-color: rgba(0, 0, 0, 0.303);
+    border: 1px solid black;
     transition: transform .2s;
-
 }
 
 .card:hover {
@@ -18,31 +17,28 @@
 }
 
 .name {
+    font-family: url('../../fuentes/JetBrainsMono-Light.ttf');
     text-align: center;
     align-items: center;
-    font-family: url('../../fuentes/JetBrainsMono-Light.ttf');
+    margin-bottom: 1rem;
     font-size: 19px;
-    position: absolute;
-    top: 20px;
-    left: 50px;
-    z-index: 2;
 }
 
-
-
 .imagen {
+    justify-content: center;
+    align-items: center;
+    position: center;
+    border: 1px solid black;
+    box-shadow: 8px 7px 18px 1px black;
     width: 16rem;
     height: 9.40rem;
-    margin-left: 16px;
-    position: center;
-    z-index: 0;
 }
 
 .genero {
-    position: absolute;
-    bottom: 50px;
-    left: 60px;
     align-items: center;
+    position: relative;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
 .rating {

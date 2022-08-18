@@ -9,15 +9,11 @@ export default function VideogameDetail(props) {
    const dispatch = useDispatch();
    const { id } = props.match.params;
 
-
    const videogameDetail = useSelector((state) => state.videogameDetail)
-   // console.log(videogameDetail);
    useEffect(() => {
       dispatch(getVideogameDetail(id)
       )
    }, [id, dispatch])
-
-
 
    return (
       <div>
@@ -26,24 +22,23 @@ export default function VideogameDetail(props) {
          </Link>
          <div className="detalle">
             {videogameDetail ? (
-               <div className="">
+               <div>
                   <p className="nombreDetalle">{videogameDetail.name}</p>
-                  <div className="">
+                  <div className='container-image'>
                      <img
                         className="imagenes"
                         src={
                            videogameDetail.background_image ||
                            "https://www.acbar.org/Website/Loader/loader3.gif"
                         }
-                        alt=""
                      />
                   </div>
-
-                  <p className="parrafos">{videogameDetail.genres?.map((g) => g.name).join(", ")}</p>{" "}
-                  <p className="parrafos"> {videogameDetail.description_raw || videogameDetail.description}</p>
-
-                  <p className="parrafos"> {videogameDetail.released || "None"}</p>
-                  <p className="parrafos">★{videogameDetail.rating}</p>
+                  <div className='container-parrafos'>
+                     <p className="parrafos">{videogameDetail.genres?.map((g) => g.name).join(", ")}</p>{" "}
+                     <p className="description"> {videogameDetail.description_raw || videogameDetail.description}</p>
+                     <p className="parrafos"> {videogameDetail.released || "None"}</p>
+                     <p className="parrafos">★{videogameDetail.rating}</p>
+                  </div>
                </div>
             ) : (
                <h5>no se encontro el detalle</h5>

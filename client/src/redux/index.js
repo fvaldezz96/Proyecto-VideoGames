@@ -18,18 +18,10 @@ import {
    ORDER_BY_RATING,
 } from './actions.js';
 
-//Action creators
-/**
- * Devuelve una función que toma una función de envío como argumento y luego devuelve una función
- * asíncrona que llama a la API y luego envía una acción con la respuesta de la API como carga útil.
- * @returns una función que devuelve un envío.
- */
 export function getVideogame() {
-   // en este caso tengo que llamar a la api para poder traeme todos los videogame
    return async function (dispatch) { //closure
       const videogamesData = await axios.get(
          "http://localhost:3001/videogames", {})
-      //   console.log(api.data)
       return dispatch({
          type: GET_VIDEOGAMES,
          payload: videogamesData.data
@@ -44,9 +36,11 @@ export function getVideogame() {
 // }
 
 export function getNameVideogames(name) {
+   // console.log(name,'soy el name de la action')
    return async function (dispatch) {
       try {
-         const namesData = await axios.get("http://localhost:3001/videogames?name="  + name)
+         const namesData = await axios.get("http://localhost:3001/videogames?name=" + name)
+         // console.log(namesData,'soy la data de la action')
          return dispatch({
             type: GET_NAME_VIDEOGAMES,
             payload: namesData.data
@@ -122,6 +116,7 @@ export function orderByName(payload) {
    };
 }
 export function orderByRating(payload) {
+   /* `payload` es una variable que se utiliza para pasar datos al reductor. */
    return {
       type: ORDER_BY_RATING,
       payload,
@@ -133,7 +128,9 @@ export function getPlatforms() {
       const json = await axios.get("http://localhost:3001/platforms");
       return dispatch({
          type: GET_PLATFORMS,
-         payload: json.data
+         /* Una constante que se utiliza para identificar la acción. */
+            payload: json.data
+            /* Los datos que se devuelven desde la API. */
       })
    }
 }
