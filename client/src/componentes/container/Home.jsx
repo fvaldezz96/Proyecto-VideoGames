@@ -23,8 +23,10 @@ export default function Home() {
 
    const dispatch = useDispatch();
    const allVideogames = useSelector((state) => state.videogames);
-
+  // eslint-disable-next-line
+   const [order, setOrder] = useState("");
    const [currentPage, setCurrentPage] = useState(1);
+   // eslint-disable-next-line
    const [videogamesPerPage, setVideogamesPerPage] = useState(15);
 
    const indexOfLastVideogame = currentPage * videogamesPerPage;
@@ -35,7 +37,6 @@ export default function Home() {
       indexOfLastVideogame
    );
 
-   const [order, setOrder] = useState("");
    const paginado = (pageNumber) => {
       setCurrentPage(pageNumber);
    };
@@ -69,7 +70,7 @@ export default function Home() {
       dispatch(getGenres());
       dispatch(resetVideogameDetail())
       // dispatch(getPlatforms());
-   }, [])
+   }, [dispatch])
 
    return (
       <div className='primerContenedor'>
@@ -98,7 +99,7 @@ export default function Home() {
             />
          </div>
          <div className='Card'>
-            {currentVideogames && currentVideogames.map((e,index) => {
+            {currentVideogames?.map((e,index) => {
                return (
                   <div key={index}>
                      <Link to={`/videogame/${e.id}`}>

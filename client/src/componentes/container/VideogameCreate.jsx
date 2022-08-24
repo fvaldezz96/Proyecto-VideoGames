@@ -4,9 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useHistory } from "react-router-dom";
 import '../style.css/VideogameCreate.css';
 
-
-// eslint-disable-line react-hooks/exhaustive-deps
-
 function validate(input) {
   const errors = {};
   if (!input.name.trim()) {
@@ -55,13 +52,9 @@ export default function VideogameCreate() {
   // }
 
   function handleChange(e) {
-    /* Destrucción del destino del evento. */
     const { name, value } = e.target;
-    /* `e.target` es el destino del evento. */
     setInput({
       ...input,
-      /* Un nombre de propiedad calculado. Es una forma de establecer la clave de un objeto en una
-      variable. */
       [name]: value,
     });
     setErrors(
@@ -92,9 +85,7 @@ export default function VideogameCreate() {
       })
     );
     if (Object.keys(errors).length === 0) {
-      /* Comprobando si el objeto de errores está vacío. */
       dispatch(postVideogames(input));
-      /* Despachando la acción `postVideogames` con `input` como parámetro. */
       alert("Tu juego fue creado con exito");
       setInput({
         name: "",
@@ -114,7 +105,7 @@ export default function VideogameCreate() {
 
   useEffect(() => {
     dispatch(getGenres());
-  }, []);
+  }, [dispatch]);
 
   //https://react-hook-form.com/api/useform/handlesubmit
   return (
@@ -123,7 +114,7 @@ export default function VideogameCreate() {
         <button className="botonVolver">Volver</button>
       </Link>
       <main className="">
-        <a className="titulo">Crea tu juego</a>
+        <a className="titulo" href='name not found'>Crea tu juego</a>
 
         <div className=""></div>
 
@@ -133,6 +124,7 @@ export default function VideogameCreate() {
               required
               placeholder="Nombre"
               className="input"
+              href='name not found'
               type="text"
               name="name"
               value={input.name}

@@ -26,6 +26,7 @@ export default function VideogameDetail(props) {
                   <p className="nombreDetalle">{videogameDetail.name}</p>
                   <div className='container-image'>
                      <img
+                        alt="nice"
                         className="imagenes"
                         src={
                            videogameDetail.background_image ||
@@ -48,11 +49,4 @@ export default function VideogameDetail(props) {
       </div>
    )
 };
-{/* <p className="parrafos">
-        <p className="parrafos">Platforms:</p>
-                        {videogameDetail.id?.length > 7
-                           ? videogameDetail.platforms?.map((p) => p.name).join(", ")
-                           : videogameDetail.platforms
-                              ?.map((p) => p.platform.name)
-                              .join(", ")}
-                     </p> */}
+

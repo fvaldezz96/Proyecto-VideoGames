@@ -13,11 +13,11 @@ export default function Landing() {
           <div className="container-fluid" onChange={(e) => handleChange(e)}>
                <div className="row home">
                     <div className="col-md-12 splash">
-                         <a>
+                         <a href='title not found'>
                               <div className="intro">
                                    <h1 className='tituloPagina'>Bienvenido a Videogames</h1>
                               </div>
-                              <a className="btn btn-default CTA" alt="play" onClick={() => {history.push('/home')}}> </a>
+                              <a href='title not found' className="btn btn-default CTA" alt="play" onClick={() => {history.push('/home')}}> </a>
                               <div className="sub">
                                    <p></p>
                               </div>

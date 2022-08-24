@@ -11,6 +11,7 @@ export default function Paginado({ videogamesPerPage, allVideogames, paginado })
             {
                pageNumbers && pageNumbers.map((np) => (
                   <a
+                     href='number not found'
                      className="number"
                      key={np}
                      onClick={() => paginado(np)}>{np}
