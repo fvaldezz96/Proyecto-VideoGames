@@ -1,29 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { postVideogames, getGenres } from '../../redux/index';
+import { postVideogames, getGenres, getPlatforms } from '../../redux/index';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom"; // useHistory
 import '../style.css/VideogameCreate.css';
 
 function validate(input) {
   const errors = {};
   if (!input.name.trim()) {
-    errors.name = "Se requiere un nombre";
+    errors.name = "A name is required";
   }
   if (!input.description.trim()) {
-    errors.description = "Se requiere une descripcion";
+    errors.description = "A description is required";
   }
   if (!input.released.trim()) {
-    errors.released = "Se requiere una fecha";
+    errors.released = "The release date is require";
   }
   return errors;
 }
 
 export default function VideogameCreate() {
 
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
   const genres = useSelector((state) => state.genres);
-  // const platforms = useSelector((state) => state.platforms);
+  // console.log(genres,'soy genres del front selector')
+  const platforms = useSelector((state) => state.platforms);
   const [errors, setErrors] = useState({});
 
   const [input, setInput] = useState({
@@ -33,7 +34,7 @@ export default function VideogameCreate() {
     rating: "",
     background_image: "",
     genres: [],
-    // platforms: [],
+    platforms: []
   });
 
   // const nombreValido = /^[a-zA-Z ]*$/
@@ -44,12 +45,13 @@ export default function VideogameCreate() {
       genres: input.genres.filter((g) => g !== e),
     });
   }
-  // function handleDeletePlatform(e) {
-  //   setInput({
-  //     ...input,
-  //     platforms: input.platforms.filter((p) => p !== e),
-  //   });
-  // }
+
+  function handleDeletePlatform(e) {
+    setInput({
+      ...input,
+      platforms: input.platforms.filter((p) => p !== e),
+    });
+  }
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -64,12 +66,12 @@ export default function VideogameCreate() {
       })
     );
   }
-  // function handleSelectPlatform(e) {
-  //   setInput({
-  //     ...input,
-  //     platforms: [...input.platforms, e.target.value],
-  //   });
-  // }
+  function handleSelectPlatform(e) {
+    setInput({
+      ...input,
+      platforms: [...input.platforms, e.target.value],
+    });
+  }
   function handleSelect(e) {
     setInput({
       ...input,
@@ -93,10 +95,10 @@ export default function VideogameCreate() {
         released: "",
         rating: "",
         background_image: "",
-        // platforms: [],
+        platforms: [],
         genres: [],
       });
-      history.push('/home')
+      // history.push('/home');
     } else {
       alert("No se pudo crear tu juego");
       return;
@@ -105,34 +107,32 @@ export default function VideogameCreate() {
 
   useEffect(() => {
     dispatch(getGenres());
+    dispatch(getPlatforms())
   }, [dispatch]);
 
-  //https://react-hook-form.com/api/useform/handlesubmit
   return (
     <div>
       <Link to="/home">
         <button className="botonVolver">Volver</button>
       </Link>
-      <main className="">
-        <a className="titulo" href='name not found'>Crea tu juego</a>
-
-        <div className=""></div>
-
+      <main>
+        <h2 className="titulo" href='name not found'>Create Videogames</h2>
         <form className="form" onSubmit={(e) => handleSubmit(e)}>
-          <div className="">
+          <div >
             <input
               required
               placeholder="Nombre"
               className="input"
               href='name not found'
               type="text"
+              key="name"
               name="name"
               value={input.name}
               onChange={(e) => handleChange(e)}
             />
-            {errors.name && <h4>{errors.name}</h4>}
+            {errors.name && <h4 className='mError'>{errors.name}</h4>}
           </div>
-          <div className="">
+          <div >
             <br />
             <input
               placeholder="Fecha"
@@ -142,16 +142,15 @@ export default function VideogameCreate() {
               value={input.released}
               onChange={(e) => handleChange(e)}
             />
-            {errors.released && <h4>{errors.released}</h4>}
+            {errors.released && <h4 className='mError'>{errors.released}</h4>}
           </div>
-          <div className="">
+          <div >
             <br />
             <input
               className="input"
               placeholder="Rating"
               type="number"
               name="rating"
-              /* Establecer el valor de la entrada al valor del estado. */
               value={input.rating}
               min="0"
               max="5"
@@ -159,7 +158,6 @@ export default function VideogameCreate() {
             />
           </div>
           <div >
-            <label className="" ></label>
             <input
               className="url"
               type="url"
@@ -167,6 +165,7 @@ export default function VideogameCreate() {
               value={input.background_image}
               placeholder="URL"
               onChange={(e) => handleChange(e)}
+              required
             />
           </div>
           <br />
@@ -180,47 +179,37 @@ export default function VideogameCreate() {
               value={input.description}
               onChange={(e) => handleChange(e)}
             />
-            {errors.description && <h4>{errors.description}</h4>}
+            {errors.description && <h4 className='mError'>{errors.description}</h4>}
           </div>
-          {/* <div className="">
-            <label className="" htmlFor="">
-              Platforms
-            </label>
-            {/* <select onChange={(e) => handleSelectPlatform(e)}>
-              {platforms.map((v) => (
-                <option value={v.name}>{v.name}</option>
+          <div className="">
+            <select className="botonSelect" onChange={(e) => handleSelectPlatform(e)}>
+              <option value="platforms">Platforms</option>
+              {platforms.map((v, index) => (
+                <option key={index} value={v.name}>{v.name}</option>
               ))}
-            </select> 
-
+            </select>
             {input.platforms.map((g) => (
-              <div className="">
-                <p className="">{g}</p>
+              <div className="genresSelector">
+                <p>{g}</p>
                 <button onClick={() => handleDeletePlatform(g)}>X</button>
               </div>
             ))}
-          </div> */}
-          <div >
+          </div>
+          <div>
             <select className="botonSelect" onChange={(e) => handleSelect(e)} name="genres">
-              <option selected={true} disabled="disabled" value="">
-                Generos
-              </option>
-              {genres &&
-                genres.map((genre) => (
-                  <option key={genre.id} value={genre.name}>
-                    {genre.name}
-                  </option>
-                ))}
+              <option value="genres">Genres</option>
+              {genres?.map((g, index) => (
+                <option key={index} value={g.name}>{g.name}</option>
+              ))}
             </select>
           </div>
           {input.genres.map((g) => (
-            <div className="">
-              <p className="">{g}</p>
-              <button onClick={() => handleDelete(g)}>X</button>
+            <div className="genresSelector">
+              <p>{g}</p>
+              <button onClick={() => handleDelete(g)}>x</button>
             </div>
           ))}
-          <button className="botonCrear" type="submit">
-            Crear
-          </button>
+          <button className="botonCrear" type="submit">Create</button>
         </form>
       </main>
     </div>

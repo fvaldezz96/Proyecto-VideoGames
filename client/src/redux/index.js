@@ -1,10 +1,7 @@
-// Me importo las acciones y creo las funciones
-
-
 import axios from 'axios';
 import {
    FILTER_BY_GENRE,
-   // FILTER_BY_PLATFORM,
+   FILTER_BY_PLATFORM,
    RESET_DETAILS,
    RESET_FILTERS,
    GET_NAME_VIDEOGAMES,
@@ -28,12 +25,6 @@ export function getVideogame() {
       })
    }
 }
-//function para hacer el pedido a la api y despachar la function 
-// export function getVideogame() {
-//      return function (dispatch) {
-//           return fetch("http://localhost:3001/videogame").then(res => res.json()).then(res => dispatch({ type: GET_VIDEOGAME, payloand: res }))
-//      }
-// }
 
 export function getNameVideogames(name) {
    // console.log(name,'soy el name de la action')
@@ -61,7 +52,7 @@ export function getVideogameDetail(id) {
             payload: response.data
          })
       } catch (error) {
-         alert("no encontramos el detalle del juego")
+         alert("detail not found")
       }
    }
 }
@@ -69,23 +60,23 @@ export function getVideogameDetail(id) {
 export function getGenres() {
    return async function (dispatch) {
       const genres = await axios.get("http://localhost:3001/genres");
+      // console.log(genres, "soy la data genres por front")
       return dispatch({
          type: GET_GENRES,
          payload: genres.data,
       })
-
-   }
+      }
 }
 
 
 export function postVideogames(payloand) {
+   // console.log(payloand, "soy la data del posteo")
    return async function (dispatch) {
       const data = await axios.post("http://localhost:3001/videogame", payloand)
-      // console.log(data)
-      return {
+      return dispatch({
          type: POST_VIDEOGAME,
          payload: data
-      }
+      })
    }
 }
 
@@ -116,7 +107,6 @@ export function orderByName(payload) {
    };
 }
 export function orderByRating(payload) {
-   /* `payload` es una variable que se utiliza para pasar datos al reductor. */
    return {
       type: ORDER_BY_RATING,
       payload,
@@ -128,19 +118,18 @@ export function getPlatforms() {
       const json = await axios.get("http://localhost:3001/platforms");
       return dispatch({
          type: GET_PLATFORMS,
-         /* Una constante que se utiliza para identificar la acción. */
-            payload: json.data
-            /* Los datos que se devuelven desde la API. */
+         payload: json.data
       })
    }
 }
-// export function getFilterByPlatforms(id) {
-//    return async function (dispatch) {
-//       const json = await axios.get(`http://localhost:3001/platforms/${id}`);
-//       return dispatch({ type: FILTER_BY_PLATFORM, payload: json.data });
-//    };
-// }
 
 export function getFilterByGenres(payload) {
    return { type: FILTER_BY_GENRE, payload };
+}
+
+export function getFilterByPlatforms(id) {
+   return async function (dispatch) {
+      const json = await axios.get(`http://localhost:3001/platforms/${id}`);
+      return dispatch({ type: FILTER_BY_PLATFORM, payload: json.data });
+   };
 }

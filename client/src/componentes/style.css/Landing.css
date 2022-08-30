@@ -1,77 +1,62 @@
 @font-face {
-     font-family: 'JetBrainsMono-Light';
-     src: url('../../fuentes/JetBrainsMono-Light.ttf')
+     font-family: "JetBrainsMono-Light";
+     src: url("../../fuentes/JetBrainsMono-Light.ttf");
 }
 
-.home {
-     height: 100vh;
-     margin-top:3%;
-}
-
-.splash {
-     height: 100%;
-     width: 100%;
-     text-align: center;
+.contenedor {
+     align-items: center;
+     position: fixed;
      display: flex;
      justify-content: center;
+     height: 100vh;
+     width: 100%;
+     flex-direction: column;
+}
+
+.tituloLanding {
+     font-family: "JetBrainsMono-Light";
+     justify-content: center;
+     display: flex;
+     padding: 8px;
+     margin-bottom: 100px;
      align-items: center;
+     z-index: 2;
+     color: #fff;
+     font-size: 30px;
 }
 
-.intro {
-     padding-right: 15px;
-     padding-bottom: 15px;
-}
-
-a {
-     font-family: 'JetBrainsMono-Light';
-     color: #FFF;
+@font-face {
+     font-family: "JetBrainsMono-Light";
+     src: url("../../fuentes/JetBrainsMono-Light.ttf");
 }
 
 .CTA {
-     margin: auto;
-     width: calc(11.40vw + 15px);
-     height: calc(5vw + 8px);
-     background-image: linear-gradient(90deg, #00C0FF 0%, #FFCF00 49%, #FC4F4F 80%, #00C0FF 100%);
-     display: flex;
-     align-items: center;
-     cursor: pointer;
+     background-color: #000000cc;
+     padding: 10px 45px 10px 45px;
+     border-radius: 10px;
+     font-size: 25px;
      border: none;
-     justify-content: center;
-     text-transform: uppercase;
-     font-size: 1.45vw;
-     font-weight: bold;
-     cursor: pointer;
-}
-
-.CTA:after {
-     content: attr(alt);
-     width: 12vw;
-     height: 5vw;
-     background-color: rgb(20, 20, 20);
-     display: flex;
+     color: white;
+     margin-top: 100px;
+     font-family: "JetBrainsMono-Light";
+     position: center;
      align-items: center;
-     justify-content: center;
+     cursor: pointer;
 }
 
 .CTA:hover {
-     animation: slidebg 2s linear infinite;
+     background-color: #b10202;
 }
 
-@keyframes slidebg {
-     to {
-          background-position: 20vw;
+.CTA:hover {
+     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.4);
+}
+
+
+@media (max-width:500px) {
+     .tituloLanding {
+          font-size: 15px;
+          align-items: center;
+          justify-content: center;
      }
-}
-
-.splash h1 {
-     color: #ffffff;
-}
-
-.splash p {
-     padding-top: 10px;
-     color: #ffffff;
-}
-
-.tituloPagina {
-     font-family: 'JetBrainsMono-Light';
 }

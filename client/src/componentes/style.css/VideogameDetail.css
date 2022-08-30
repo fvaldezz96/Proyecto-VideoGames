@@ -14,7 +14,8 @@
 .description {
      align-items: center;
      justify-content: center;
-     position: center;
+     position: relative;
+     text-align: center;
      font-family: "JetBrainsMono-Light";
      width: 70rem;
      margin: 20px;
@@ -23,7 +24,10 @@
 
 .parrafos {
      font-family: "JetBrainsMono-Light";
+     position: center;
      display: flex;
+     text-align: center;
+     align-items: center;
      margin: 7px;
      color: #fff;
 }

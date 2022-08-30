@@ -13,7 +13,7 @@ export default function VideogameDetail(props) {
    useEffect(() => {
       dispatch(getVideogameDetail(id)
       )
-   }, [id, dispatch])
+   }, [dispatch, id])
 
    return (
       <div>
@@ -23,7 +23,7 @@ export default function VideogameDetail(props) {
          <div className="detalle">
             {videogameDetail ? (
                <div>
-                  <p className="nombreDetalle">{videogameDetail.name}</p>
+                  <h2 className="nombreDetalle">{videogameDetail.name}</h2>
                   <div className='container-image'>
                      <img
                         alt="nice"

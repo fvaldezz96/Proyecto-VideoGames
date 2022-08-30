@@ -8,13 +8,11 @@ module.exports = sequelize => {
                allowNull: false,
                primaryKey: true
           },
-          // Usando front voy a ver si necestio unique en esta parte 
           name: {
                type: DataTypes.STRING,
                allowNull: false
           }
      }, {
-          //src/tipos-de-datos.js~ABSTRACTO → NÚMERO → ENTERO
           timestamps: false
      })
 }

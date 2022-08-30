@@ -5,16 +5,26 @@
      src: url('../../fuentes/JetBrainsMono-Light.ttf') format('woff2')
 }
 
+.navBarContainer {
+     background-color: #350505ee;
+     width: 100vw;
+     height: 30vh;
+     justify-content: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+}
+
 .botones {
-     grid-template-columns: repeat(2, 1fr);
+     grid-template-columns: repeat(3, 1fr);
      background-color: transparent;
      justify-content: center;
      align-items: center;
      background-position: bottom;
      position: center;
      cursor: pointer;
-     padding: 2vh 0;
      display: flex;
+     flex-direction: row;
 }
 
 .primerContenedor {
@@ -27,29 +37,18 @@
 .crear {
      background-color: #000000a7;
      font-family: 'JetBrainsMono-Light';
-     padding: 4px 25px 5px 25px;
+     padding: 5px 25px 5px 25px;
      border: 0;
      font-size: 1em;
+     margin: 10px;
+     cursor: pointer;
      color: white;
-     margin-left: 15px;
+     flex-wrap: nowrap ;
+     align-items: center;
+     justify-content: center;
 }
 
 .crear:hover {
-     background-color: #8b0000;
-}
-
-.actualizar {
-     font-family: 'JetBrainsMono-Light';
-     background-color: #000000a0;
-     padding: 4px 25px 5px 25px;
-     margin-right: 15px;
-     margin-top: 14px;
-     font-size: 1em;
-     color: white;
-     border: 0;
-}
-
-.actualizar:hover {
      background-color: #8b0000;
 }
 
@@ -62,5 +61,9 @@
      flex-direction: row;
      padding: 3vh 0;
      grid-gap: 1.5rem;
-     left: 20px
+     left: 20px;
+}
+
+.buscador {
+     margin: 10px;
 }

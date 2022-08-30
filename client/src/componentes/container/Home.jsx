@@ -15,7 +15,7 @@ import {
    getGenres,
    orderByName,
    orderByRating,
-   // getPlatforms,
+   getPlatforms,
    resetVideogameDetail,
 } from '../../redux/index';
 
@@ -23,7 +23,7 @@ export default function Home() {
 
    const dispatch = useDispatch();
    const allVideogames = useSelector((state) => state.videogames);
-  // eslint-disable-next-line
+   // eslint-disable-next-line
    const [order, setOrder] = useState("");
    const [currentPage, setCurrentPage] = useState(1);
    // eslint-disable-next-line
@@ -69,29 +69,24 @@ export default function Home() {
       dispatch(getVideogame());
       dispatch(getGenres());
       dispatch(resetVideogameDetail())
-      // dispatch(getPlatforms());
+      dispatch(getPlatforms());
    }, [dispatch])
 
    return (
       <div className='primerContenedor'>
-         <div className='buscador'>
-            <SearchBar />
-         </div>
-
-         <div className='botones'>
-            <button className='actualizar' onClick={(e) => handleReset(e)}><i className="fa-solid fa-arrows-rotate"></i></button>
-            <Link to='/videogameCreate'>
-               <button className='crear' >crear juego</button>
-            </Link>
-         </div>
-         <div>
+         <div className='navBarContainer'>
+            <div className='botones'>
+               <button className='crear' onClick={(e) => handleReset(e)}><i className="fa-solid fa-arrows-rotate"></i></button>
+               <Link to='/videogameCreate'>
+                  <button className='crear'>Create Videogames</button>
+               </Link>
+                  <SearchBar />
+            </div>
             <Navbar
                handleFilterCreated={handleFilterCreated}
                handleSortByName={handleSortByName}
                handleSortByRating={handleSortByRating}
             />
-         </div>
-         <div>
             <Paginado
                videogamesPerPage={videogamesPerPage}
                allVideogames={allVideogames.length}
@@ -99,15 +94,16 @@ export default function Home() {
             />
          </div>
          <div className='Card'>
-            {currentVideogames?.map((e,index) => {
+            {currentVideogames?.map((e, index) => {
                return (
                   <div key={index}>
                      <Link to={`/videogame/${e.id}`}>
                         <Card
                            name={e.name}
-                           image={e.img}
+                           background_image={e.background_image}
                            genres={e.genres}
                            rating={e.rating}
+                           platforms={e.platforms}
                         />
                      </Link>
                   </div>

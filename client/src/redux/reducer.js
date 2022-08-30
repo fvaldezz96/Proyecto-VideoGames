@@ -17,7 +17,7 @@ import {
 let initialState = {
      videogames: [],
      allvideogames: [],
-     // platforms: [],
+     platforms: [],
      videogameDetail: [],
      genres: [],
 }
@@ -56,19 +56,25 @@ export default function rootReducer(state = initialState, action) {
                };
           }
           case FILTER_BY_PLATFORM:
+               const filter = action.payload === "All"
+                    ? state.allvideogames
+                    : state.allvideogames.filter((e) => {
+                         return e.platforms.find((e) => {
+                              return e.anme === action.payload
+                         })
+                    })
                return {
                     ...state,
-                    videogames: action.payload,
+                    videogames: filter,
                };
           case FILTER_BY_GENRE:
-               const filtrado =
-                    action.payload === "All"
-                         ? state.allvideogames
-                         : state.allvideogames.filter((g) => {
-                              return g.genres.find((g) => {
-                                   return g.name === action.payload;
-                              });
+               const filtrado = action.payload === "All"
+                    ? state.allvideogames
+                    : state.allvideogames.filter((g) => {
+                         return g.genres.find((g) => {
+                              return g.name === action.payload;
                          });
+                    });
                return {
                     ...state,
                     videogames: filtrado,

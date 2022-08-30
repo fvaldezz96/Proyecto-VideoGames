@@ -37,7 +37,7 @@ const getApiInfo = async () => {
         return {
           id: v.id,
           name: v.name,
-          img: v.background_image,
+          background_image: v.background_image,
           description: v.description,
           released: v.released,
           rating: v.rating,
@@ -84,12 +84,43 @@ router.get("/platforms", async (req, res) => {
       `https://api.rawg.io/api/platforms?key=${API_KEY}`
     );
     const plataformas = platformsApi.data.results;
-    res.json(plataformas);
+    plataformas.forEach(async (g) => {
+      await Platform.findOrCreate({
+        where: {
+          name: g.name,
+        },
+      });
+    });
+    const allPlatforms = await Platform.findAll();
+    res.status(200).send(allPlatforms);
   } catch (err) {
     res.send(err);
   }
 });
 
+router.get("/platforms/:id", async (req, res) => {
+  const { id } = req.params;
+  const gamesByPlatform = await axios.get(
+    `https://api.rawg.io/api/games?platforms=${id}&key=${API_KEY}`
+  );
+  const info = gamesByPlatform.data.results;
+
+  const mapeados = info?.map((v) => {
+    const plataformas = v.platforms.map((g) => g.platform);
+    return {
+      id: v.id,
+      name: v.name,
+      img: v.background_image,
+      description: v.description,
+      released: v.released,
+      rating: v.rating,
+      platforms: plataformas,
+      genres: v.genres,
+    };
+  });
+
+  return res.json(mapeados);
+});
 //Genres
 
 router.get("/genres", async (req, res) => {
@@ -111,7 +142,7 @@ router.get("/genres", async (req, res) => {
 //videogame
 
 router.post("/videogame", async (req, res) => {
-  let { name, description, released, background_image, rating, platforms, genres } = req.body;
+  let { name, description, released, rating, platforms, background_image, genres } = req.body;
   let createVideogame = await Videogame.create({
     name,
     description,
@@ -122,7 +153,6 @@ router.post("/videogame", async (req, res) => {
   let DbGenre = await Genre.findAll({
     where: { name: genres },
   });
-  
   let dbPlatform = await Platform.findAll({
     where: { name: platforms },
   });

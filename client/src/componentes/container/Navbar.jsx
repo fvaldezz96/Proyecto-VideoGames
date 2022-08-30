@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilterByGenres } from '../../redux/index';
+import { getFilterByGenres, getFilterByPlatforms } from '../../redux';
 import '../style.css/Navbar.css';
 
 export default function Navbar({
@@ -10,81 +10,51 @@ export default function Navbar({
 }) {
    const dispatch = useDispatch();
    const genres = useSelector((state) => state.genres);
+   const platforms = useSelector((state) => state.platforms)
 
    function handleFilter(e) {
-      dispatch(getFilterByGenres(e.target.value))
+      dispatch(getFilterByGenres(e.target.value));
    }
+   function handleFilterPlatforms(e) {
+      dispatch(getFilterByPlatforms(e.target.value));
+   }
+
    return (
       <div >
          <div >
             <select onChange={(e) => { handleSortByName(e) }}>
-               <option disabled>Orden</option>
+               <option className='options'>Order</option>
                <option value="Asc">A-Z</option>
                <option value="Dsc">Z-A</option>
             </select>
             <select onChange={(e) => { handleSortByRating(e) }}>
-               <option disabled="disabled"> Rating </option>
-               <option value="All">Todos</option>
-               <option value="Higth">Mayor puntuación</option>
-               <option value="Low">Menor puntuación</option>
+               <option className='options' value="All">Rating</option>
+               <option value="Higth">highest score</option>
+               <option value="Low">lower score</option>
             </select>
-            <select
-               name="genres"
-               className=""
-               onChange={(e) => {
-                  handleFilter(e)
-               }}
-            >
-               <option value="All">
-                  Todos los Géneros
-               </option>
-               {genres &&
-                  genres.map((genre) => (
-                     <option
-                        className=""
-                        key={genre.id}
-                        value={genre.name}
-                     >
-                        {genre.name}
-                     </option>
-                  ))}
+            <select name="genres" onChange={(e) => { handleFilter(e) }}>
+               <option className='options' value="All">All Genres</option>
+               {genres?.map((genre) => (
+                  <option key={genre.id} value={genre.name} >
+                     {genre.name}
+                  </option>
+               ))}
+            </select>
+            <select onChange={(e) => { handleFilterPlatforms(e) }} name="platforms">
+               <option className="options" value="All">Choose a platforms</option>
+               {platforms?.map((platform) => (
+                  <option key={platform.id} value={platform.id}>
+                     {platform.name}
+                  </option>
+               ))}
             </select>
             <select onChange={(e) => { handleFilterCreated(e) }}>
-               <option value="All"> Todos </option>
-               <option value="Created">Creados </option>
-               <option value="Api"> Existentes</option>
+               <option className='options' value="All"> All Videogames </option>
+               <option value="Created">Create</option>
+               <option value="Api">Existing</option>
             </select>
          </div>
       </div>
    )
 };
 
-
-//caso que necesite las plataformas y demas
-
-// <select
-// className={styles.filters}
-// onChange={(e) => {
-//   handleFilter(getFilterByPlatforms, e);
-// }}
-// name="platforms"
-// >
-// <option
-//   className={styles.options}
-//   selected={true}
-//   disabled="disabled"
-//   value=""
-// >
-//   Choose a platform
-// </option>
-// {platforms &&
-//   platforms.map((platform) => (
-//     <option
-//       className={styles.options}
-//       key={platform.id}
-//       value={platform.id}
-//     >
-//       {platform.name}
-//     </option>
-//   ))}
-// </select>

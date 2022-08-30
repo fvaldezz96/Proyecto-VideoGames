@@ -1,16 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
 .contenedorSearch {
-     justify-content: center;
      align-items: center;
-     margin-top: 4%;
      display: flex;
+     margin-bottom: 9px ;
 }
 
 .container-3 {
      width: 200px;
      vertical-align: middle;
-     white-space: nowrap;
      align-items: center;
      display: flex;
 }

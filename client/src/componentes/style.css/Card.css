@@ -5,9 +5,9 @@
     position: relative;
     text-align: center;
     display: flex;
-    width: 18rem;
-    height: 22rem;
-    background-color: rgba(0, 0, 0, 0.303);
+    width: 19rem;
+    height: 27rem;
+    background-color: rgba(0, 0, 0, 0.697);
     border: 1px solid black;
     transition: transform .2s;
 }
@@ -20,11 +20,12 @@
     font-family: url('../../fuentes/JetBrainsMono-Light.ttf');
     text-align: center;
     align-items: center;
+    color: #fff;
     margin-bottom: 1rem;
     font-size: 19px;
 }
 
-.imagen {
+.background_image {
     justify-content: center;
     align-items: center;
     position: center;
@@ -34,16 +35,32 @@
     height: 9.40rem;
 }
 
-.genero {
-    align-items: center;
-    position: relative;
-    justify-content: center;
-    margin-top: 1rem;
-}
 
 .rating {
     align-items: center;
     position: absolute;
     bottom: 20px;
     left: 120px;
+    color: #fff;
+
+}
+
+.genero {
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 13px;
+    color: #fff;
+
+}
+
+.platforms {
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 15px;
+    color: #fff;
+
 }
