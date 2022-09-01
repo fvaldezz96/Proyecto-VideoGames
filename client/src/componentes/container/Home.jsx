@@ -80,17 +80,12 @@ export default function Home() {
                <Link to='/videogameCreate'>
                   <button className='crear'>Create Videogames</button>
                </Link>
-                  <SearchBar />
+               <SearchBar />
             </div>
             <Navbar
                handleFilterCreated={handleFilterCreated}
                handleSortByName={handleSortByName}
                handleSortByRating={handleSortByRating}
-            />
-            <Paginado
-               videogamesPerPage={videogamesPerPage}
-               allVideogames={allVideogames.length}
-               paginado={paginado}
             />
          </div>
          <div className='Card'>
@@ -110,6 +105,12 @@ export default function Home() {
                )
             })}
          </div>
+         <Paginado
+            videogamesPerPage={videogamesPerPage}
+            allVideogames={allVideogames.length}
+            paginado={paginado}
+         />
+         <br />
       </div>
    )
 }

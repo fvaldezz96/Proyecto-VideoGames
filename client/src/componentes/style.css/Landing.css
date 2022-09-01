@@ -4,23 +4,28 @@
 }
 
 .contenedor {
+     background-image: url("../../image/imagen.jpg");
+     background-position: center center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-attachment: fixed;
+     width: 100vw;
      align-items: center;
      position: fixed;
      display: flex;
      justify-content: center;
-     height: 100vh;
-     width: 100%;
      flex-direction: column;
+     height: 100vh;
 }
 
 .tituloLanding {
      font-family: "JetBrainsMono-Light";
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
      justify-content: center;
-     display: flex;
+     flex-direction: row;
      padding: 8px;
-     margin-bottom: 100px;
-     align-items: center;
      z-index: 2;
+     margin-top: 160px;
      color: #fff;
      font-size: 30px;
 }
@@ -30,6 +35,13 @@
      src: url("../../fuentes/JetBrainsMono-Light.ttf");
 }
 
+.containerButtonLanding {
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+     position: relative;
+}
+
 .CTA {
      background-color: #000000cc;
      padding: 10px 45px 10px 45px;
@@ -37,10 +49,7 @@
      font-size: 25px;
      border: none;
      color: white;
-     margin-top: 100px;
      font-family: "JetBrainsMono-Light";
-     position: center;
-     align-items: center;
      cursor: pointer;
 }
 

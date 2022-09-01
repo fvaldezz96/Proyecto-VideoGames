@@ -6,12 +6,16 @@ function Card({ platforms, background_image, name, genres, rating }) {
      const plataformas = platforms?.map((p) => p.name);
      return (
           <div className="card">
+               <div className="containerImg">
+                    <img className="background_image" src={background_image} alt="img and videogame" />
+               </div>
                <h2 className='name'>{name}</h2>
-               <img className="background_image" src={background_image} alt="img and videogame" />
                <div>
-                    <p className='platforms'>Platforms: {plataformas.join(", ")}</p>
                     <p className='genero'>Genres: {genero.join(", ")}</p>
-                    <p className='rating'><i>{rating}</i></p>
+                    <p className='platforms'>Platforms: {plataformas.join(", ")}</p>
+               </div>
+               <div>
+                    <p className='rating'>{rating}</p>
                </div>
           </div>
      )

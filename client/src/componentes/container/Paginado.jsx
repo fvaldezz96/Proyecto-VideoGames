@@ -9,7 +9,7 @@ export default function Paginado({ videogamesPerPage, allVideogames, paginado })
       <nav className="numberContainer">
          <div>
             {
-               pageNumbers && pageNumbers.map((np) => (
+               pageNumbers?.map((np) => (
                   <a
                      href='number not found'
                      className="number"

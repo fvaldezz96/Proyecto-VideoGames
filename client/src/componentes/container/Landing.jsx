@@ -8,11 +8,11 @@ export default function Landing() {
           <div className='contenedor'>
                <div className="tituloLanding">
                     <h1 className="ejemplo">welcome to videogames</h1>
-               </div>
-               <div className="tituloLanding">
-                    <Link to={'/home'}>
-                         <button className="CTA">PLAY</button>
-                    </Link>
+                    <div className='containerButtonLanding'>
+                         <Link to={'/home'}>
+                              <button className="CTA">PLAY</button>
+                         </Link>
+                    </div>
                </div>
           </div>
      )

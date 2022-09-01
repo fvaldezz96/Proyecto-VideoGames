@@ -6,7 +6,7 @@
 }
 
 .navBarContainer {
-     background-color: #350505ee;
+     background-color: rgb(47, 0, 0);
      width: 100vw;
      height: 30vh;
      justify-content: center;
@@ -17,6 +17,7 @@
 
 .botones {
      grid-template-columns: repeat(3, 1fr);
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
      background-color: transparent;
      justify-content: center;
      align-items: center;
@@ -25,6 +26,7 @@
      cursor: pointer;
      display: flex;
      flex-direction: row;
+     width: 40rem;
 }
 
 .primerContenedor {
@@ -32,10 +34,12 @@
      display: flex;
      flex-direction: column;
      align-items: center;
+     background-color: rgba(0, 0, 0, 0.429);
 }
 
 .crear {
      background-color: #000000a7;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
      font-family: 'JetBrainsMono-Light';
      padding: 5px 25px 5px 25px;
      border: 0;
@@ -43,7 +47,7 @@
      margin: 10px;
      cursor: pointer;
      color: white;
-     flex-wrap: nowrap ;
+     flex-wrap: nowrap;
      align-items: center;
      justify-content: center;
 }
