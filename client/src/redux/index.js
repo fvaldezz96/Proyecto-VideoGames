@@ -65,7 +65,7 @@ export function getGenres() {
          type: GET_GENRES,
          payload: genres.data,
       })
-      }
+   }
 }
 
 
